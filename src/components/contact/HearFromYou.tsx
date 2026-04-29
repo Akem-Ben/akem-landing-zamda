@@ -10,7 +10,7 @@
 //       const handleResize = () => {
 //         setScreenWidth(window.innerWidth);
 //       };
-  
+
 //       window.addEventListener("resize", handleResize);
 //       return () => window.removeEventListener("resize", handleResize);
 //     }, []);
@@ -28,7 +28,7 @@
 //       borderBottomRightRadius: isMobile ? "300px" : "12px",
 //     },
 //   };
-    
+
 //   return (
 //     <>
 //       {/* Fixed floating icons */}
@@ -127,7 +127,6 @@
 //   },
 // };
 
-
 import React, { useEffect, useState } from "react";
 import mainImage from "../../assets/hear.png";
 import whatsapp from "../../assets/whatsapp.png";
@@ -145,7 +144,7 @@ const HearFromYou: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const isMobile = screenWidth <= 768;
+  const isMobile = screenWidth <= 767;
 
   return (
     <>
@@ -174,7 +173,10 @@ const HearFromYou: React.FC = () => {
               src={mainImage}
               style={{
                 ...styles.sliceImg,
-                objectPosition: "0% center",
+                width: "450%", // stretch image wider than the slice
+                maxWidth: "none",
+                objectPosition: "left center",
+                objectFit: "none", // disable objectFit so width/position take over
               }}
               alt="team left"
             />
@@ -194,7 +196,12 @@ const HearFromYou: React.FC = () => {
               src={mainImage}
               style={{
                 ...styles.sliceImg,
-                objectPosition: "50% top",
+                width: "450%",
+                maxWidth: "none",
+                objectFit: "none",
+                position: "relative",
+                left: "50%",
+                transform: "translateX(-50%)", // center the full-width image inside the slice
               }}
               alt="team center"
             />
@@ -213,7 +220,15 @@ const HearFromYou: React.FC = () => {
               src={mainImage}
               style={{
                 ...styles.sliceImg,
-                objectPosition: "100% center",
+                width: "100%",
+                maxWidth: "none",
+                objectFit: "none",
+                position: "relative",
+                right: 0,
+                left: "auto",
+                marginLeft: "auto",
+                display: "block",
+                objectPosition: "right center", // anchor to the right edge
               }}
               alt="team right"
             />
@@ -271,9 +286,9 @@ const styles: { [key: string]: React.CSSProperties } = {
     opacity: 0.85,
   },
   centerSlice: {
-    width: "48%",
+    width: "60%",
     maxWidth: "170px",
-    height: "360px",
+    height: "300px",
   },
 
   // Image fills wrapper and the objectPosition shifts which part shows
