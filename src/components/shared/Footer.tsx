@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../assets/logo-2.png";
+import logo from "../../assets/Logo-2.png";
 import twitter from "../../assets/twitter.png";
 import instagram from "../../assets/instagram.png";
 import linkedin from "../../assets/tiktok.png";

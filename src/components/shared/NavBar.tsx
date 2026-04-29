@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/Logo.png";
 import dropdownIcon from "../../assets/down_line.png";
 import hamburger from "../../assets/hamburger.png";
 import { Link, useLocation } from "react-router-dom";
