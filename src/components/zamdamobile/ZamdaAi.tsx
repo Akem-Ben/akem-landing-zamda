@@ -139,7 +139,7 @@ const styles: any = {
   },
 
   container: {
-    maxWidth: "700px",
+    maxWidth: "950px",
     width: "100%",
     textAlign: "center",
   },

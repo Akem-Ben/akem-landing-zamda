@@ -148,7 +148,7 @@ const HearFromYou: React.FC = () => {
 
   return (
     <>
-      {/* Fixed floating icons */}
+      {/* floating icons */}
       <img src={whatsapp} style={styles.whatsapp} alt="whatsapp" />
       <img src={ai} style={styles.ai} alt="ai" />
 
@@ -173,10 +173,10 @@ const HearFromYou: React.FC = () => {
               src={mainImage}
               style={{
                 ...styles.sliceImg,
-                width: "450%", // stretch image wider than the slice
+                width: "450%", 
                 maxWidth: "none",
                 objectPosition: "left center",
-                objectFit: "none", // disable objectFit so width/position take over
+                objectFit: "none", 
               }}
               alt="team left"
             />
@@ -201,7 +201,7 @@ const HearFromYou: React.FC = () => {
                 objectFit: "none",
                 position: "relative",
                 left: "50%",
-                transform: "translateX(-50%)", // center the full-width image inside the slice
+                transform: "translateX(-50%)", 
               }}
               alt="team center"
             />
@@ -228,7 +228,7 @@ const HearFromYou: React.FC = () => {
                 left: "auto",
                 marginLeft: "auto",
                 display: "block",
-                objectPosition: "right center", // anchor to the right edge
+                objectPosition: "right center",
               }}
               alt="team right"
             />
@@ -273,7 +273,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     marginRight: "-30px",
   },
 
-  // Wrapper clips the image to its slice
+  
   sliceWrapper: {
     overflow: "hidden",
     flexShrink: 0,
@@ -291,7 +291,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     height: "300px",
   },
 
-  // Image fills wrapper and the objectPosition shifts which part shows
+  
   sliceImg: {
     width: "100%",
     height: "100%",

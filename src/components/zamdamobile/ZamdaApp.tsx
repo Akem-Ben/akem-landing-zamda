@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import phoneImage from "../../assets/zamda-phone.png";
-import phoneImageMobile from "../../assets/zamda-phone-2.png"; // ✅ NEW MOBILE IMAGE
+import phoneImageMobile from "../../assets/zamda-phone-2.png";
 
 import appStore from "../../assets/apple.png";
 import playStore from "../../assets/playstore.png";
@@ -103,7 +103,7 @@ const ZamdaApp: React.FC = () => {
           }}
         >
           <img
-            src={isMobile ? phoneImageMobile : phoneImage} // ✅ MOBILE SWAP
+            src={isMobile ? phoneImageMobile : phoneImage} 
             style={{
               ...styles.phone,
               ...(isMobile && {
@@ -191,7 +191,7 @@ const styles: any = {
   container: {
     position: "relative",
     overflow: "hidden",
-    maxWidth: "1000px",
+    maxWidth: "1190px",
     width: "100%",
     borderRadius: "24px",
     padding: "10px 60px 0px",

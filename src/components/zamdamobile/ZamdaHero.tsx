@@ -11,9 +11,6 @@ import badge2 from "../../assets/badge2.png";
 import badge3 from "../../assets/badge3.png";
 import badge4 from "../../assets/badge4.png";
 
-import whatsapp from "../../assets/whatsapp.png";
-import ai from "../../assets/ai.png";
-
 const ZamdaHero: React.FC = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
@@ -150,31 +147,6 @@ const ZamdaHero: React.FC = () => {
             <img src={badge4} style={styles.badge4} />
           </>
         )}
-
-        {/* FLOATING ICONS */}
-        <img
-          src={whatsapp}
-          style={{
-            ...styles.whatsapp,
-            ...(isMobile && {
-              width: "38px",
-              right: "6%",
-              top: "58%",
-            }),
-          }}
-        />
-
-        <img
-          src={ai}
-          style={{
-            ...styles.ai,
-            ...(isMobile && {
-              width: "38px",
-              right: "6%",
-              top: "68%",
-            }),
-          }}
-        />
       </div>
     </section>
   );
@@ -308,19 +280,5 @@ const styles: any = {
     zIndex: 4,
   },
 
-  whatsapp: {
-    position: "absolute",
-    width: "58px",
-    right: "4%",
-    top: "35%",
-    zIndex: 5,
-  },
 
-  ai: {
-    position: "absolute",
-    width: "58px",
-    right: "4%",
-    top: "48%",
-    zIndex: 5,
-  },
 };

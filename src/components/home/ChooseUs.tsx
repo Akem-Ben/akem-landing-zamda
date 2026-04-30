@@ -171,7 +171,7 @@ const styles = {
 
   container: {
     width: "100%",
-    maxWidth: "950px",
+    maxWidth: "1190px",
     margin: "0 auto",
     background: "#ffffff",
     borderRadius: "16px",
@@ -236,7 +236,7 @@ const styles = {
 
   image: {
     width: "100%",
-    maxWidth: "200px",
+    maxWidth: "250px",
   } as React.CSSProperties,
 
   /* MOBILE CARD */

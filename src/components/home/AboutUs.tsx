@@ -90,7 +90,7 @@ const styles: { [key: string]: React.CSSProperties } = {
 
   card: {
     width: "100%",
-    maxWidth: "950px",
+    maxWidth: "1190px",
     background: "#ffffff",
     borderRadius: "16px",
     boxShadow: "0 20px 60px rgba(0,0,0,0.05)",
@@ -137,7 +137,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
 
   text: {
-    fontSize: "14px",
+    fontSize: "16px",
     color: "#616161",
     fontWeight: 500,
     lineHeight: 1.8,

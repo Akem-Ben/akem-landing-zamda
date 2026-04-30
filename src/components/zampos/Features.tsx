@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // ICONS
 import salesIcon from "../../assets/sales.png";
@@ -12,27 +12,36 @@ import offlineIcon from "../../assets/offline.png";
 import staffIcon from "../../assets/staff.png";
 
 const FeaturesSection: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <section style={styles.section}>
       <div style={styles.container}>
         <span style={styles.badge}>Features</span>
 
-        <h2 style={styles.title}>
+        <h2 style={{ ...styles.title, fontWeight: isMobile ? 400 : 500 }}>
           Everything you need to <br /> know about the ZamPOS
         </h2>
 
         {/* 3 INDEPENDENT COLUMNS */}
-        <div style={styles.grid}>
+        <div style={{ ...styles.grid, flexDirection: isMobile ? "column" : "row" }}>
           
           {/* COLUMN 1 */}
-          <div style={styles.col}>
+          <div style={{ ...styles.col, width: isMobile ? "100%" : "auto" }}>
             <Card icon={salesIcon} title="Sales & Checkout" text="Streamlined POS interface for quick and accurate transaction processing." bg="#E8EBFF" />
             <Card icon={reportsIcon} title="Reports & Analytics" text="Gain insights into sales trends, inventory performance, and business growth." bg="#FFFFFF" />
             <Card icon={branchIcon} title="Multi Branch Management" text="Maintain detailed patient records and consultation logs for personalized care." bg="#E0E5FE" />
           </div>
 
           {/* COLUMN 2 (ONLY TALL TOP CARD) */}
-          <div style={styles.col}>
+          <div style={{ ...styles.col, width: isMobile ? "100%" : "auto" }}>
             <Card
               icon={inventoryIcon}
               title="Inventory & Expiry Alerts"
@@ -45,7 +54,7 @@ const FeaturesSection: React.FC = () => {
           </div>
 
           {/* COLUMN 3 */}
-          <div style={styles.col}>
+          <div style={{ ...styles.col, width: isMobile ? "100%" : "auto" }}>
             <Card icon={supplierIcon} title="Supplier Management" text="Efficiently manage supplier orders, deliveries, and payment schedules." bg="#D2DDF8" />
             <Card icon={prescriptionIcon} title="Prescription Management" text="Digital prescription processing and secure patient prescription records." bg="#FFFFFF" />
             <Card icon={staffIcon} title="Staff Management & Controls" text="Monitor staff activity and protect your sales. Assign roles, track logins, and see who did what — and when." bg="#D6E0F9" />
@@ -79,7 +88,7 @@ const Card = ({
       style={{
         ...styles.card,
         background: bg,
-        height: tall ? "300px" : "260px",
+        height: tall ? "310px" : "280px",
       }}
     >
       <div style={styles.textBlock}>
@@ -105,7 +114,7 @@ const styles: any = {
   },
 
   container: {
-    maxWidth: "1000px",
+    maxWidth: "1190px",
     width: "100%",
     textAlign: "center",
   },
