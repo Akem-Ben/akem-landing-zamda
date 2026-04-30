@@ -34,7 +34,8 @@ const Navbar: React.FC = () => {
       <nav
         style={{
           ...styles.nav,
-          padding: isTablet ? "15px 20px" : "15px 40px", 
+          // padding: isTablet ? "15px 40px" : "15px 80px", 
+          padding: isMobile ? "15px 20px" : "15px 80px", 
         }}
       >
         {/* Logo */}
@@ -69,7 +70,10 @@ const Navbar: React.FC = () => {
           <li
             style={{
               ...styles.menuItem,
-              ...(location.pathname === "/zampos" || location.pathname === "/zammobile" ? styles.active : {})
+              ...(location.pathname === "/zampos" ||
+              location.pathname === "/zammobile"
+                ? styles.active
+                : {}),
             }}
             onClick={() => setShowDropdown(!showDropdown)}
           >
@@ -78,10 +82,16 @@ const Navbar: React.FC = () => {
 
             {showDropdown && (
               <div style={styles.dropdown}>
-                <Link to="/zampos" style={{ textDecoration: "none", color: "inherit" }}>
+                <Link
+                  to="/zampos"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
                   <div style={styles.dropdownItem}>ZamPOS</div>
                 </Link>
-                <Link to="/zammobile" style={{ textDecoration: "none", color: "inherit" }}>
+                <Link
+                  to="/zammobile"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
                   <div style={styles.dropdownItem}>Zamda Mobile App</div>
                 </Link>
               </div>
@@ -89,10 +99,13 @@ const Navbar: React.FC = () => {
           </li>
 
           <li style={location.pathname === "/contact" ? styles.active : {}}>
-  <Link to="/contact" style={{ textDecoration: "none", color: "inherit" }}>
-    Contact
-  </Link>
-</li>
+            <Link
+              to="/contact"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              Contact
+            </Link>
+          </li>
         </ul>
 
         {/* Buttons */}
@@ -112,7 +125,7 @@ const Navbar: React.FC = () => {
           src={hamburger}
           style={{
             ...styles.hamburger,
-            display: isMobile ? "block" : "none", 
+            display: isMobile ? "block" : "none",
           }}
           onClick={() => setOpenSidebar(true)}
         />
@@ -130,29 +143,54 @@ const Navbar: React.FC = () => {
         </div>
 
         <ul style={styles.sidebarMenu}>
-          <li style={location.pathname === "/" ? styles.active : {}} onClick={() => setOpenSidebar(false)}>
+          <li
+            style={location.pathname === "/" ? styles.active : {}}
+            onClick={() => setOpenSidebar(false)}
+          >
             <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
               Home
             </Link>
           </li>
 
-          <li style={location.pathname === "/zampos" || location.pathname === "/zammobile" ? styles.active : {}} onClick={() => setShowDropdown(!showDropdown)}>
+          <li
+            style={
+              location.pathname === "/zampos" ||
+              location.pathname === "/zammobile"
+                ? styles.active
+                : {}
+            }
+            onClick={() => setShowDropdown(!showDropdown)}
+          >
             {getProductLabel()}
           </li>
 
           {showDropdown && (
             <div style={styles.sidebarDropdown}>
-              <Link to="/zampos" style={{ textDecoration: "none", color: "inherit" }} onClick={() => setOpenSidebar(false)}>
+              <Link
+                to="/zampos"
+                style={{ textDecoration: "none", color: "inherit" }}
+                onClick={() => setOpenSidebar(false)}
+              >
                 <div>ZamPOS</div>
               </Link>
-              <Link to="/zammobile" style={{ textDecoration: "none", color: "inherit" }} onClick={() => setOpenSidebar(false)}>
+              <Link
+                to="/zammobile"
+                style={{ textDecoration: "none", color: "inherit" }}
+                onClick={() => setOpenSidebar(false)}
+              >
                 <div>Zamda Mobile App</div>
               </Link>
             </div>
           )}
 
-          <li style={location.pathname === "/contact" ? styles.active : {}} onClick={() => setOpenSidebar(false)}>
-            <Link to="/contact" style={{ textDecoration: "none", color: "inherit" }}>
+          <li
+            style={location.pathname === "/contact" ? styles.active : {}}
+            onClick={() => setOpenSidebar(false)}
+          >
+            <Link
+              to="/contact"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
               Contact
             </Link>
           </li>
@@ -182,6 +220,11 @@ const styles = {
     boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
     height: "90px",
     background: "#F2F1FD",
+    position: "fixed" as any,
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 10,
   },
 
   logoImage: {

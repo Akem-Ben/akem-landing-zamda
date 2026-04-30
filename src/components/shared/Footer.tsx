@@ -23,6 +23,9 @@ const Footer: React.FC = () => {
             ...styles.top,
             flexDirection: isMobile ? "column" : "row",
             alignItems: "flex-start",
+            // Adjust justifyContent and gap for desktop to ensure equal spacing between the four columns
+            justifyContent: isMobile ? "flex-start" : "space-between",
+            gap: isMobile ? "25px" : "0px", // Use 0px for desktop as space-between handles distribution
           }}
         >
           {/* LEFT */}
@@ -41,36 +44,29 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* LINKS */}
-          <div
-            style={{
-              ...styles.linksWrapper,
-              flexDirection: isMobile ? "column" : "row",
-              gap: isMobile ? "25px" : "60px",
-              width: isMobile ? "100%" : "auto",
-            }}
-          >
-            <div style={styles.column}>
-              <h4 style={styles.heading}>Product</h4>
-              <p style={styles.link}>ZamPOS</p>
-              <p style={styles.link}>Zamda Mobile App</p>
-              <p style={styles.link}>Features</p>
-            </div>
+          {/* Product Column */}
+          <div style={styles.column}>
+            <h4 style={styles.heading}>Product</h4>
+            <p style={styles.link}>ZamPOS</p>
+            <p style={styles.link}>Zamda Mobile App</p>
+            <p style={styles.link}>Features</p>
+          </div>
 
-            <div style={styles.column}>
-              <h4 style={styles.heading}>Company</h4>
-              <p style={styles.link}>About us</p>
-              <p style={styles.link}>Contact us</p>
-            </div>
+          {/* Company Column */}
+          <div style={styles.column}>
+            <h4 style={styles.heading}>Company</h4>
+            <p style={styles.link}>About us</p>
+            <p style={styles.link}>Contact us</p>
+          </div>
 
-            <div style={styles.column}>
-              <h4 style={styles.heading}>Contact Info</h4>
-              <p style={styles.link}>+234 8100521930</p>
-              <p style={styles.link}>admin@zamdahealth.com</p>
-              <p style={styles.link}>
-                i268 Road 5, Ikota Shopping <br /> Complex, VGC, Lagos
-              </p>
-            </div>
+          {/* Contact Info Column */}
+          <div style={styles.column}>
+            <h4 style={styles.heading}>Contact Info</h4>
+            <p style={styles.link}>+234 8100521930</p>
+            <p style={styles.link}>admin@zamdahealth.com</p>
+            <p style={styles.link}>
+              i268 Road 5, Ikota Shopping <br /> Complex, VGC, Lagos
+            </p>
           </div>
         </div>
 
@@ -126,15 +122,14 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
 
   container: {
-    maxWidth: "1100px",
+    maxWidth: "1190px",
     margin: "0 auto",
   },
 
   top: {
     display: "flex",
-    justifyContent: "space-between",
-    gap: "40px",
     flexWrap: "wrap",
+    // justifyContent and gap are now handled dynamically in the component
   },
 
   left: {
@@ -163,12 +158,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     width: "28px",
     height: "28px",
     cursor: "pointer",
-  },
-
-  linksWrapper: {
-    display: "flex",
-    gap: "60px",
-    flexWrap: "wrap",
   },
 
   column: {

@@ -138,7 +138,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
 
   container: {
-    maxWidth: "950px",
+    maxWidth: "1190px",
     borderRadius: "14px",
     position: "relative",
     overflow: "hidden",

@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from "react";
-
-import amazon from "../../assets/amazon.png";
-import axon from "../../assets/axon.png";
-import hormel from "../../assets/hormel.png";
-import mercedes from "../../assets/mercedes.png";
-
-import whatsapp from "../../assets/whatsapp.png";
-import ai from "../../assets/ai.png";
+import ZamHero from "../../components/zampos/Hero";
+import ZamdaHero from "../../components/zamdamobile/ZamdaHero";
 
 import heroImage from "../../assets/hero-section.png";
 import heroImageMobile from "../../assets/hero-section-mobile.png";
 
-const brands = [amazon, axon, hormel, amazon, axon, mercedes, amazon, mercedes];
-
 const HeroCarousel: React.FC = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
     const handleResize = () => setScreenWidth(window.innerWidth);
@@ -22,13 +15,25 @@ const HeroCarousel: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSlide((prev) => (prev === 2 ? 0 : prev + 1));
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   const isMobile = screenWidth <= 768;
   const isTablet = screenWidth > 768 && screenWidth <= 1024;
-
   const heroImg = isMobile ? heroImageMobile : heroImage;
 
-  return (
-    <section style={styles.hero}>
+  const slides = [
+    "home",
+    "zampos",
+    "zammobile",
+  ];
+
+  const renderHomeSlide = () => (
+    <div style={styles.heroSlide}>
       {/* TEXT */}
       <div style={styles.content}>
         <h1
@@ -143,40 +148,54 @@ const HeroCarousel: React.FC = () => {
               ...styles.heroImage,
               height: isMobile ? "100%" : "auto",
               objectPosition: isMobile ? "center top" : "center",
-
-              // ONLY CHANGE (mobile bottom radius)
               borderBottomLeftRadius: isMobile ? "30px" : "0px",
               borderBottomRightRadius: isMobile ? "30px" : "0px",
             }}
           />
-
-          {/* ICONS */}
-          <div
-            style={{
-              ...styles.floatingIcons,
-              right: isMobile ? "-10px" : "-25px",
-              top: "20%",
-              transform: "translateY(-50%)",
-            }}
-          >
-            <img src={whatsapp} style={styles.icon} />
-            <img src={ai} style={styles.icon} />
-          </div>
         </div>
       </div>
 
-      {/* TRUSTED BRANDS */}
-      {!isMobile && (
-        <div style={styles.trustedFull}>
-          <p style={styles.trustedText}>Trusted by these Pharmacies</p>
+    </div>
+  );
 
-          <div style={styles.brandTrack}>
-            {[...brands, ...brands].map((logo, i) => (
-              <img key={i} src={logo} style={styles.logo} />
-            ))}
-          </div>
+  const renderSlide = (slide: string) => {
+    if (slide === "zampos") return <ZamHero />;
+    if (slide === "zammobile") return <ZamdaHero />;
+    return renderHomeSlide();
+  };
+
+  return (
+    <section style={styles.carouselContainer}>
+      <div style={styles.sliderWrapper}>
+        <div
+          style={{
+            ...styles.slides,
+            transform: `translateX(-${activeSlide * 100}vw)`,
+            width: `${slides.length * 100}vw`,
+          }}
+        >
+          {slides.map((slide) => (
+            <div key={slide} style={styles.slide}>
+              {renderSlide(slide)}
+            </div>
+          ))}
         </div>
-      )}
+      </div>
+
+      <div style={styles.controls}>
+        <div style={styles.dots}>
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              style={{
+                ...styles.dot,
+                background: activeSlide === index ? "#201E82" : "#D8D8F2",
+              }}
+              onClick={() => setActiveSlide(index)}
+            />
+          ))}
+        </div>
+      </div>
     </section>
   );
 };
@@ -184,12 +203,37 @@ const HeroCarousel: React.FC = () => {
 export default HeroCarousel;
 
 const styles = {
-  hero: {
+  carouselContainer: {
+    position: "relative",
+    overflow: "hidden",
+    background: "#F2F1FD",
+    minHeight: "700px",
+  } as React.CSSProperties,
+
+  sliderWrapper: {
+    width: "100%",
+  } as React.CSSProperties,
+
+  slides: {
+    display: "flex",
+    transition: "transform 0.5s ease",
+  } as React.CSSProperties,
+
+  slide: {
+    width: "100vw",
+    flexShrink: 0,
+    minHeight: "700px",
+  } as React.CSSProperties,
+
+  heroSlide: {
     background: "#F2F1FD",
     padding: "70px 20px 0px",
     textAlign: "center",
     fontFamily: "Arial, sans-serif",
     overflowX: "hidden",
+    minHeight: "700px",
+    display: "flex",
+    flexDirection: "column",
   } as React.CSSProperties,
 
   content: {
@@ -203,8 +247,6 @@ const styles = {
     margin: "18px auto 0",
     maxWidth: "620px",
   } as React.CSSProperties,
-
-  
 
   button: {
     marginTop: "18px",
@@ -251,48 +293,31 @@ const styles = {
     display: "block",
   } as React.CSSProperties,
 
-  floatingIcons: {
+  controls: {
     position: "absolute",
+    bottom: "20px",
+    left: "50%",
+    transform: "translateX(-50%)",
     display: "flex",
-    flexDirection: "column",
-    gap: "25px",
-    zIndex: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 100,
   } as React.CSSProperties,
 
-  icon: {
-    width: "46px",
-    height: "46px",
+  controlButton: {
+    display: "none",
+  } as React.CSSProperties,
+
+  dots: {
+    display: "flex",
+    gap: "10px",
+  } as React.CSSProperties,
+
+  dot: {
+    width: "12px",
+    height: "12px",
     borderRadius: "50%",
-    boxShadow: "0 8px 18px rgba(0,0,0,0.20)",
-    background: "#fff",
-  } as React.CSSProperties,
-
-  trustedFull: {
-    width: "100vw",
-    marginLeft: "calc(-50vw + 50%)",
-    background:
-      "linear-gradient(90deg, #0f1a5a 0%, #1f2a8a 50%, #0f1a5a 100%)",
-    boxShadow: "inset 0 0 30px rgba(0,0,0,0.2)",
-    padding: "20px 0",
-    overflow: "hidden",
-  } as React.CSSProperties,
-
-  trustedText: {
-    color: "#fff",
-    marginBottom: "25px",
-    fontSize: "20px",
-    textAlign: "center",
-  } as React.CSSProperties,
-
-  brandTrack: {
-    display: "flex",
-    gap: "50px",
-    width: "max-content",
-    animation: "scroll 15s linear infinite",
-  } as React.CSSProperties,
-
-  logo: {
-    height: "25px",
-    opacity: 0.9,
+    border: "none",
+    cursor: "pointer",
   } as React.CSSProperties,
 };

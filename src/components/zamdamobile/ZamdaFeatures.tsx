@@ -20,7 +20,7 @@ const ZamdaFeatures: React.FC = () => {
     <section style={styles.container}>
       <p style={styles.top}>Features</p>
 
-      {/* ✅ MOBILE HEADING CONTROL */}
+      {/*MOBILE HEADING CONTROL */}
       <h2 style={styles.heading}>
         {isMobile ? (
           <>
@@ -168,7 +168,7 @@ const styles: any = {
     display: "grid",
     gridTemplateColumns: "repeat(3, 1fr)",
     gap: "22px",
-    maxWidth: "1000px",
+    maxWidth: "1190px",
     margin: "0 auto",
     alignItems: "start",
   },

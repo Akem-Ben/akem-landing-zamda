@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import alert from "../../assets/alert.png";
 import chat from "../../assets/chat.png";
@@ -7,26 +7,45 @@ import market from "../../assets/market.png";
 import profit from "../../assets/profit.png";
 
 const Powered: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Mobile order: 
+  const mobileFeatures = [
+    features[1], // Zam AI Chat Assistant
+    features[0], // Drug Interaction Alerts
+    features[2], // Condition-Based Suggestions
+    features[3], // Market Trend Analysis
+    features[4], // Profit & Staff Insights
+  ];
+
+  const displayFeatures = isMobile ? mobileFeatures : features;
   return (
     <section style={styles.container}>
       <p style={styles.top}>Powered by Zam AI</p>
 
-      <h2 style={styles.heading}>Zam AI Powered Features</h2>
+      <h2 style={{ ...styles.heading, fontSize: isMobile ? "24px" : "32px", fontWeight: isMobile ? 500 : 600 }}>Zam AI Powered Features</h2>
 
       <p style={styles.sub}>
         Smarter decisions, safer dispensing, and better business outcomes with ZamAI.
       </p>
 
-      <div style={styles.grid}>
-        {features.map((item, i) => {
+      <div style={{ ...styles.grid, display: isMobile ? "flex" : "grid", flexDirection: isMobile ? "column" : undefined }}>
+        {displayFeatures.map((item, i) => {
           let position: React.CSSProperties = {};
 
-          // ✅ TOP ROW (3 CARDS)
+          
           if (i === 0) position.gridColumn = "1 / span 2";
           if (i === 1) position.gridColumn = "3 / span 2";
           if (i === 2) position.gridColumn = "5 / span 2";
 
-          // ✅ CENTERED SECOND ROW (2 CARDS)
+    
           if (i === 3) position.gridColumn = "2 / span 2";
           if (i === 4) position.gridColumn = "4 / span 2";
 
@@ -50,7 +69,13 @@ const Powered: React.FC = () => {
         })}
       </div>
 
-      <style>{responsive}</style>
+      <style>{`
+@media (max-width: 1024px) {
+  div[style*="grid-template-columns"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+`}</style>
     </section>
   );
 };
@@ -126,16 +151,16 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: "14px",
   },
 
-  // ✅ 6-COLUMN GRID FOR PERFECT ALIGNMENT
+  // GRID FOR PERFECT ALIGNMENT
   grid: {
     display: "grid",
     gridTemplateColumns: "repeat(6, 1fr)",
     gap: "28px",
-    maxWidth: "1000px",
+    maxWidth: "1190px",
     margin: "0 auto",
   },
 
-  // ✅ PERFECT SQUARE CARDS
+  // PERFECT SQUARE CARDS
   card: {
     padding: "24px",
     borderRadius: "18px",
@@ -167,23 +192,3 @@ const styles: { [key: string]: React.CSSProperties } = {
     alignSelf: "center",
   },
 };
-
-// ---------------- RESPONSIVE ----------------
-
-const responsive = `
-@media (max-width: 1024px) {
-  div[style*="grid-template-columns"] {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
-@media (max-width: 600px) {
-  div[style*="grid-template-columns"] {
-    grid-template-columns: 1fr !important;
-  }
-
-  section {
-    padding: 80px 15px;
-  }
-}
-`;

@@ -9,5 +9,6 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     font-family: system-ui, -apple-system, sans-serif;
+    padding-top: 90px;
   }
 `;

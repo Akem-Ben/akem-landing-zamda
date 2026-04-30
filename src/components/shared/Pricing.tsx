@@ -267,7 +267,7 @@ const styles: any = {
 
     container: {
     width: "100%",
-    maxWidth: "950px",
+    maxWidth: "1190px",
     margin: "0 auto",
     background: "linear-gradient(180deg, #dfdeee 0%, #F3F3FE 30%, #ffffff 100%)",
     borderRadius: "16px",

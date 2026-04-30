@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import dashboardImage from "../../assets/dashboard.png";
+import mobileImage from "../../assets/zamda-mobile.png";
 
 const ProductSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"pos" | "app">("pos");
@@ -12,6 +13,10 @@ const ProductSection: React.FC = () => {
   }, []);
 
   const isMobile = screenWidth <= 768;
+
+  const displayedImage = activeTab === "pos" ? dashboardImage : mobileImage;
+
+  const isAppTab = activeTab === "app";
 
   return (
     <section style={styles.section}>
@@ -47,19 +52,14 @@ const ProductSection: React.FC = () => {
               ...styles.subtitle,
               fontSize: isMobile ? "13px" : "14px",
               maxWidth: isMobile ? "300px" : "none",
-              margin: isMobile ? "0 auto 20px" : undefined,
+              margin: "0 auto 20px",
             }}
           >
             Explore our product offerings to elevate your pharmacy’s efficiency
           </p>
 
           {/* TABS */}
-          <div
-            style={{
-              ...styles.tabs,
-              transform: isMobile ? "scale(0.95)" : "none",
-            }}
-          >
+          <div style={styles.tabs}>
             <button
               style={{
                 ...styles.tab,
@@ -81,7 +81,7 @@ const ProductSection: React.FC = () => {
             </button>
           </div>
 
-          {/* DESCRIPTION */}
+          {/* DESCRIPTION (UNCHANGED TEXT) */}
           <p
             style={{
               ...styles.description,
@@ -92,30 +92,29 @@ const ProductSection: React.FC = () => {
             {activeTab === "pos" ? (
               <>
                 ZamdaHealth’s advanced Point of Sale{" "}
-                <span style={{ fontWeight: 800, color: "#000" }}>
-                  (ZamPOS)
-                </span>{" "}
+                <span style={{ fontWeight: 800, color: "#000" }}>(ZamPOS)</span>{" "}
                 system for pharmacies, a comprehensive and versatile solution
                 designed to streamline sales and inventory management. This
                 powerful tool offers efficient transaction processing, automatic
                 stock updates, and comprehensive sales analytics.
               </>
             ) : (
-              "The Zamda Mobile App empowers pharmacy owners and staff to manage operations on the go. From tracking inventory in real-time to monitoring sales performance and accessing key insights, the app ensures flexibility and control anytime, anywhere."
+              <>
+                Zamda Health's{" "}
+                <span style={{ fontWeight: 800, color: "#000" }}>
+                  (Mobile App)
+                </span>{" "}
+                makes getting medicines easy and stress-free. Order from nearby
+                pharmacies, upload prescriptions, track deliveries in real time,
+                and manage refills, all from your phone. It’s a smarter, faster
+                way to access pharmacy care when you need it most.
+              </>
             )}
           </p>
 
-          {/* CTA */}
-          <button
-            style={{
-              ...styles.cta,
-              padding: isMobile ? "14px 18px" : "16px 23px",
-              fontSize: isMobile ? "13px" : "14px",
-            }}
-          >
-            {activeTab === "pos"
-              ? "See ZamPOS Features"
-              : "Explore Mobile App"}
+          {/* CTA (UNCHANGED TEXT) */}
+          <button style={styles.cta}>
+            {activeTab === "pos" ? "See ZamPOS Features" : "Explore Mobile App"}
           </button>
         </div>
 
@@ -127,9 +126,19 @@ const ProductSection: React.FC = () => {
           }}
         >
           <img
-            src={dashboardImage}
+            src={displayedImage}
             style={{
               ...styles.image,
+
+              ...(isAppTab && !isMobile
+                ? {
+                    maxWidth: "530px",
+                    margin: "0 auto",
+                    display: "block",
+                    objectFit: "contain",
+                  }
+                : {}),
+
               borderRadius: isMobile ? "12px" : "16px",
             }}
           />
@@ -153,7 +162,7 @@ const styles: { [key: string]: React.CSSProperties } = {
 
   card: {
     width: "100%",
-    maxWidth: "950px",
+    maxWidth: "1190px",
     background: "#ffffff",
     borderRadius: "18px",
     textAlign: "center",
@@ -163,7 +172,7 @@ const styles: { [key: string]: React.CSSProperties } = {
 
   topSection: {
     background:
-      "linear-gradient(180deg, #f6f7fb 0%, #eef1f8 60%, #ffffff 100%)",
+      "linear-gradient(180deg, #F0EFFE 0%, #eef1f8 60%, #ffffff 100%)",
   },
 
   badge: {
@@ -174,7 +183,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     borderRadius: "999px",
     fontSize: "11px",
     fontWeight: 600,
-    letterSpacing: "0.6px",
     marginBottom: "18px",
   },
 
@@ -198,17 +206,14 @@ const styles: { [key: string]: React.CSSProperties } = {
 
   tab: {
     padding: "10px 20px",
-    borderRadius: "8px",
     border: "none",
     background: "transparent",
     cursor: "pointer",
     fontSize: "13px",
-    color: "#000",
   },
 
   activeTab: {
     background: "#ffffff",
-    color: "#141414",
     fontWeight: 500,
     boxShadow: "0 3px 10px rgba(0,0,0,0.08)",
   },
@@ -222,13 +227,12 @@ const styles: { [key: string]: React.CSSProperties } = {
 
   cta: {
     marginTop: "28px",
-    background: "var(--btncolor1)",
+    background: "#201E82",
     color: "#fff",
     border: "none",
     borderRadius: "10px",
+    padding: "14px 23px",
     cursor: "pointer",
-    fontWeight: 500,
-    boxShadow: "0 10px 25px rgba(45,47,143,0.25)",
   },
 
   imageWrapper: {

@@ -158,7 +158,7 @@ const styles: { [key: string]: React.CSSProperties } = {
 
   wrapper: {
     width: "100%",
-    maxWidth: "950px",
+    maxWidth: "1190px",
     background: "#F0EFFD",
     borderRadius: "18px",
     display: "flex",

@@ -154,7 +154,7 @@ const styles: { [key: string]: React.CSSProperties } = {
 
   container: {
     width: "100%",
-    maxWidth: "950px",
+    maxWidth: "1190px",
     display: "flex",
     gap: "48px",
     background: "#fff",

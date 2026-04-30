@@ -14,7 +14,7 @@ const ZamdaWorks: React.FC = () => {
     <section style={styles.section}>
       <div style={styles.container}>
         
-        {/* ✅ BADGE (MOVE UP ON MOBILE) */}
+        {/* BADGE (MOVE UP ON MOBILE) */}
         <span
           style={{
             ...styles.badge,
@@ -22,7 +22,7 @@ const ZamdaWorks: React.FC = () => {
               marginTop: "0px",
               marginBottom: "10px",
               position: "relative",
-              top: "-10px", // 👈 THIS moves it up
+              top: "-10px",
             }),
           }}
         >
@@ -147,7 +147,7 @@ const styles: any = {
   },
 
   container: {
-    maxWidth: "1000px",
+    maxWidth: "1190px",
     width: "100%",
     background:
       "linear-gradient(180deg, #dfdeee 15%, #F3F3FE 30%, #ffffff 100%)",
