@@ -26,11 +26,7 @@ const HeroCarousel: React.FC = () => {
   const isTablet = screenWidth > 768 && screenWidth <= 1024;
   const heroImg = isMobile ? heroImageMobile : heroImage;
 
-  const slides = [
-    "home",
-    "zampos",
-    "zammobile",
-  ];
+  const slides = ["home", "zampos", "zammobile"];
 
   const renderHomeSlide = () => (
     <div style={styles.heroSlide}>
@@ -64,8 +60,9 @@ const HeroCarousel: React.FC = () => {
             fontWeight: 500,
           }}
         >
-          Zamda Health combines a pharmacy-built POS with a Patient’s mobile app,
-          helping you sell faster, reduce losses, and reach more patients online.
+          Zamda Health combines a pharmacy-built POS with a Patient’s mobile
+          app, helping you sell faster, reduce losses, and reach more patients
+          online.
         </p>
 
         <button style={styles.button}>Learn More</button>
@@ -154,7 +151,6 @@ const HeroCarousel: React.FC = () => {
           />
         </div>
       </div>
-
     </div>
   );
 
