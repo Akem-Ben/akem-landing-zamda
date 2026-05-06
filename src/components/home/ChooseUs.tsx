@@ -195,7 +195,7 @@ const styles = {
 
   title: {
     fontSize: "28px",
-    fontWeight: 600,
+    fontWeight: 400,
     color: "#141414",
     marginBottom: "10px",
   } as React.CSSProperties,

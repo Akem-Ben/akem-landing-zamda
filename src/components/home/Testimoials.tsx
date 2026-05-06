@@ -177,7 +177,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   title: {
     fontSize: "26px",
     margin: "12px 0",
-    fontWeight: 500,
+    fontWeight: 400,
   },
 
   subtitle: {

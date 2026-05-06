@@ -26,7 +26,7 @@ const FeaturesSection: React.FC = () => {
       <div style={styles.container}>
         <span style={styles.badge}>Features</span>
 
-        <h2 style={{ ...styles.title, fontWeight: isMobile ? 400 : 500 }}>
+        <h2 style={{ ...styles.title, fontWeight: isMobile ? 400 : 400 }}>
           Everything you need to <br /> know about the ZamPOS
         </h2>
 

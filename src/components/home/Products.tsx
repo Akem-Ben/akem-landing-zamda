@@ -187,7 +187,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
 
   title: {
-    fontWeight: 600,
+    fontWeight: 400,
     color: "#141414",
     marginBottom: "10px",
   },
@@ -243,7 +243,7 @@ const styles: { [key: string]: React.CSSProperties } = {
 
   image: {
     width: "100%",
-    maxWidth: "860px",
+    maxWidth: "1000px",
     display: "block",
   },
 };

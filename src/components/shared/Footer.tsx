@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import logo from "../../assets/Logo-2.png";
 import twitter from "../../assets/twitter.png";
 import instagram from "../../assets/instagram.png";
@@ -47,16 +48,26 @@ const Footer: React.FC = () => {
           {/* Product Column */}
           <div style={styles.column}>
             <h4 style={styles.heading}>Product</h4>
-            <p style={styles.link}>ZamPOS</p>
-            <p style={styles.link}>Zamda Mobile App</p>
-            <p style={styles.link}>Features</p>
+            <Link to="/zampos" style={styles.link}>
+              ZamPOS
+            </Link>
+            <Link to="/zammobile" style={styles.link}>
+              Zamda Mobile App
+            </Link>
+            <Link to="/" style={styles.link}>
+              Features
+            </Link>
           </div>
 
           {/* Company Column */}
           <div style={styles.column}>
             <h4 style={styles.heading}>Company</h4>
-            <p style={styles.link}>About us</p>
-            <p style={styles.link}>Contact us</p>
+            <Link to="/" style={styles.link}>
+              About us
+            </Link>
+            <Link to="/contact" style={styles.link}>
+              Contact us
+            </Link>
           </div>
 
           {/* Contact Info Column */}
@@ -90,8 +101,12 @@ const Footer: React.FC = () => {
               order: isMobile ? 1 : 2,
             }}
           >
-            <span>Privacy Policy</span>
-            <span>Terms of service</span>
+            <Link to="/privacy" style={styles.link}>
+              Privacy Policy
+            </Link>
+            <Link to="/terms" style={styles.link}>
+              Terms of service
+            </Link>
           </div>
 
           {/* COPY LAST ON MOBILE */}
@@ -172,12 +187,14 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
 
   link: {
+    display: "block",
     fontSize: "13px",
     color: "#ffffffc8",
     marginBottom: "20px",
     cursor: "pointer",
     marginTop: "12px",
     textAlign: "left",
+    textDecoration: "none",
   },
 
   divider: {

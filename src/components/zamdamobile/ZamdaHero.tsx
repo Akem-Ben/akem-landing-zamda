@@ -174,7 +174,7 @@ const styles: any = {
   heading: {
     fontSize: "35px",
     lineHeight: "1.1",
-    fontWeight: 600,
+    fontWeight: 400,
     color: "#141414",
     margin: 0,
     letterSpacing: "-1.4px",
