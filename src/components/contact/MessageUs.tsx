@@ -233,13 +233,16 @@ const styles: { [key: string]: React.CSSProperties } = {
     background: "#F2F1FD",
   },
   container: {
-    maxWidth: "1200px",
+    width: "100%",
+    maxWidth: "1190px",
     margin: "0 auto",
     display: "flex",
     gap: "40px",
     alignItems: "stretch",
   },
   containerMobile: {
+    width: "100%",
+    maxWidth: "1190px",
     margin: "0 auto",
     display: "flex",
     flexDirection: "column",

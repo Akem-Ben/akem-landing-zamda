@@ -38,19 +38,20 @@ const Navbar: React.FC = () => {
           padding: isMobile ? "15px 20px" : "15px 80px", 
         }}
       >
-        {/* Logo */}
-        <div>
-          <Link to="/">
-            <img
-              src={logo}
-              alt="Zamda Logo"
-              style={{
-                ...styles.logoImage,
-                height: isTablet ? "32px" : "40px",
-              }}
-            />
-          </Link>
-        </div>
+        <div style={styles.navContainer}>
+          {/* Logo */}
+          <div>
+            <Link to="/">
+              <img
+                src={logo}
+                alt="Zamda Logo"
+                style={{
+                  ...styles.logoImage,
+                  height: isTablet ? "32px" : "40px",
+                }}
+              />
+            </Link>
+          </div>
 
         {/* Menu */}
         <ul
@@ -129,6 +130,7 @@ const Navbar: React.FC = () => {
           }}
           onClick={() => setOpenSidebar(true)}
         />
+      </div>
       </nav>
 
       {/* Sidebar (UNCHANGED) */}
@@ -353,6 +355,15 @@ const styles = {
     top: 0,
     left: 0,
     zIndex: 900,
+  },
+  navContainer: {
+    width: "100%",
+    maxWidth: "1190px",
+    margin: "0 auto",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: "20px",
   },
 };
 

@@ -10,12 +10,14 @@ const brands = [amazon, axon, hormel, amazon, axon, mercedes, amazon, mercedes];
 const Hero: React.FC = () => {
   return (
     <section style={styles.trustedFull}>
-      <p style={styles.trustedText}>Trusted by these Pharmacies</p>
+      <div style={styles.container}>
+        <p style={styles.trustedText}>Trusted by these Pharmacies</p>
 
-      <div style={styles.brandTrack}>
-        {[...brands, ...brands].map((logo, i) => (
-          <img key={i} src={logo} style={styles.logo} />
-        ))}
+        <div style={styles.brandTrack}>
+          {[...brands, ...brands].map((logo, i) => (
+            <img key={i} src={logo} style={styles.logo} />
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -51,5 +53,12 @@ const styles: { [key: string]: React.CSSProperties } = {
   logo: {
     height: "25px",
     opacity: 0.9,
+  },
+
+  container: {
+    width: "100%",
+    maxWidth: "1190px",
+    margin: "0 auto",
+    padding: "0 20px",
   },
 };

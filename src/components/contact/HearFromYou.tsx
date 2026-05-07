@@ -153,7 +153,8 @@ const HearFromYou: React.FC = () => {
       <img src={ai} style={styles.ai} alt="ai" />
 
       <section style={styles.container}>
-        <h2 style={styles.heading}>We'd Love to Hear From You</h2>
+        <div style={styles.content}>
+          <h2 style={styles.heading}>We'd Love to Hear From You</h2>
         <p style={styles.subtext}>
           Whether you have a question about our products, want to book a demo,
           or just want to say hello — our team is here and ready to help.
@@ -234,6 +235,7 @@ const HearFromYou: React.FC = () => {
             />
           </div>
         </div>
+        </div>
       </section>
     </>
   );
@@ -249,6 +251,12 @@ const styles: { [key: string]: React.CSSProperties } = {
     borderRadius: "60px 60px 0 0",
     textAlign: "center",
     overflow: "hidden",
+  },
+  content: {
+    width: "100%",
+    maxWidth: "1190px",
+    margin: "0 auto",
+    padding: "0 20px",
   },
   heading: {
     fontSize: "clamp(26px, 6vw, 36px)",

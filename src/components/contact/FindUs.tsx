@@ -25,7 +25,8 @@ const FindUs: React.FC = () => {
 
   return (
     <section style={{...styles.container, padding: isTablet ? "15px 20px" : "15px 80px",}}>
-      <span style={styles.top}>Follow and Connect</span>
+      <div style={styles.content}>
+        <span style={styles.top}>Follow and Connect</span>
       <h2 style={isMobile ? styles.headingMobile : styles.heading}>Find Us on Social Media</h2>
       <p style={isMobile ? styles.subMobile : styles.sub}>
         Stay up to date with news, product updates, health tips and more across all our channels.
@@ -53,6 +54,7 @@ const FindUs: React.FC = () => {
           </a>
         ))}
       </div>
+      </div>
     </section>
   );
 };
@@ -73,6 +75,11 @@ const styles: { [key: string]: React.CSSProperties } = {
     padding: "60px 20px",
     textAlign: "center",
     background: "#F9F9FA",
+  },
+  content: {
+    width: "100%",
+    maxWidth: "1190px",
+    margin: "0 auto",
   },
   top: {
     display: "inline-block",

@@ -26,10 +26,11 @@ const ChatUs: React.FC = () => {
     <section style={{...styles.wrapper, 
 padding: isTablet ? "15px 20px" : "15px 80px",
     }}>
-      <div style={{
-        ...styles.cards,
-        ...(isMobile && styles.cardsMobile)
-      }}>
+      <div style={styles.content}>
+        <div style={{
+          ...styles.cards,
+          ...(isMobile && styles.cardsMobile)
+        }}>
         {data.map((item, i) => (
           <div key={i} style={{ ...styles.card, background: item.bg }}>
             <div style={styles.iconWrapper}>
@@ -64,6 +65,7 @@ padding: isTablet ? "15px 20px" : "15px 80px",
           <span style={styles.buttonText}>Start WhatsApp chat</span>
         </a>
       </div>
+      </div>
     </section>
   );
 };
@@ -74,6 +76,11 @@ const styles: { [key: string]: React.CSSProperties } = {
   wrapper: {
     padding: "40px 20px",
     background: "#F9F9FA",
+  },
+  content: {
+    width: "100%",
+    maxWidth: "1190px",
+    margin: "0 auto",
   },
   cards: {
     display: "grid",
