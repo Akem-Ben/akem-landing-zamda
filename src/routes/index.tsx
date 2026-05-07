@@ -3,7 +3,7 @@ import Home from "../pages/Home/Home";
 import Contact from "../pages/Contact/Contact";
 import ZamPos from "../pages/ZamPos/ZamPos";
 import ZamMobile from "../pages/ZamMobile/ZamMobile";
-
+import ChatWidget from "../components/shared/ChatWidget";
 
 const RootRouter = () => {
   return (
@@ -13,8 +13,8 @@ const RootRouter = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/zampos" element={<ZamPos />} />
         <Route path="/zammobile" element={<ZamMobile />} />
-        
       </Routes>
+      <ChatWidget />
     </BrowserRouter>
   );
 };

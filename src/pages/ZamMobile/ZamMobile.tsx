@@ -7,14 +7,12 @@ import ZamdaFeatures from "../../components/zamdamobile/ZamdaFeatures";
 import ZamdaHero from "../../components/zamdamobile/ZamdaHero";
 import ZamdaWorks from "../../components/zamdamobile/ZamdaWorks";
 import whatsapp from "../../assets/whatsapp.png";
-import ai from "../../assets/ai.png";
 
 function ZamMobile() {
   return (
     <div>
       {/* Fixed floating icons */}
       <img src={whatsapp} style={styles.whatsapp} alt="whatsapp" />
-      <img src={ai} style={styles.ai} alt="ai" />
       
       <Navbar />
       <ZamdaHero />
