@@ -297,7 +297,7 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    zIndex: 100,
+    zIndex: 1,
   } as React.CSSProperties,
 
   controlButton: {
