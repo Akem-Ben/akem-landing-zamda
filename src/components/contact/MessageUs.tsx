@@ -1,10 +1,24 @@
 import React, { useEffect, useState } from "react";
 import checkIcon from "../../assets/check-fill.png";
 import dropdownIcon from "../../assets/dropdown.png";
+import apiClient from "../../services/axiosInstance";
 
 const MessageUs: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [countryCode, setCountryCode] = useState("+234");
+  const [fullName, setFullName] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
+  const [statusType, setStatusType] = useState<"success" | "error" | "">("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState({
+    fullName: "",
+    phone: "",
+    message: "",
+  });
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -12,6 +26,57 @@ const MessageUs: React.FC = () => {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  const validate = () => {
+    const nextErrors = {
+      fullName: fullName.trim() ? "" : "Full name is required.",
+      phone: phone.trim() ? "" : "Phone number is required.",
+      message: message.trim() ? "" : "Message is required.",
+    };
+
+    setErrors(nextErrors);
+    return !nextErrors.fullName && !nextErrors.phone && !nextErrors.message;
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!validate()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setStatusMessage("");
+    setStatusType("");
+
+    try {
+      await apiClient.post("/api/contact", {
+        fullName: fullName.trim(),
+        companyName: companyName.trim(),
+        phone: `${countryCode} ${phone.trim()}`,
+        email: email.trim(),
+        message: message.trim(),
+      });
+
+      setStatusType("success");
+      setStatusMessage("Message sent successfully. Our team will reach out soon.");
+      setFullName("");
+      setCompanyName("");
+      setPhone("");
+      setEmail("");
+      setMessage("");
+      setErrors({ fullName: "", phone: "", message: "" });
+    } catch (error) {
+      console.error(error);
+      setStatusType("error");
+      setStatusMessage("There was a problem sending your message. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const isSubmitDisabled =
+    !fullName.trim() || !phone.trim() || !message.trim() || isSubmitting;
 
   return (
     <section style={isMobile ? styles.sectionMobile : styles.section}>
@@ -47,22 +112,30 @@ const MessageUs: React.FC = () => {
           )}
 
           <div style={isMobile ? styles.formCardMobile : styles.formCard}>
-            <form style={isMobile ? styles.formMobile : styles.form}>
+            <form
+              style={isMobile ? styles.formMobile : styles.form}
+              onSubmit={handleSubmit}
+            >
               {/* Full Name */}
               <div style={styles.inputGroup}>
                 <label style={styles.label}>Full Name*</label>
-                <input 
-                  placeholder="Enter your full name" 
-                  style={isMobile ? styles.inputMobile : styles.input} 
+                <input
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  placeholder="Enter your full name"
+                  style={isMobile ? styles.inputMobile : styles.input}
                 />
+                {errors.fullName && <span style={styles.errorText}>{errors.fullName}</span>}
               </div>
 
               {/* Company Name - separate row on mobile */}
               <div style={styles.inputGroup}>
                 <label style={styles.label}>Company Name</label>
-                <input 
-                  placeholder="Enter company name" 
-                  style={isMobile ? styles.inputMobile : styles.input} 
+                <input
+                  value={companyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
+                  placeholder="Enter company name"
+                  style={isMobile ? styles.inputMobile : styles.input}
                 />
               </div>
 
@@ -71,9 +144,9 @@ const MessageUs: React.FC = () => {
                 <label style={styles.label}>Phone Number*</label>
                 <div style={isMobile ? styles.phoneWrapperMobile : styles.phoneWrapper}>
                   <div style={styles.countryBox}>
-                    <select 
-                      value={countryCode} 
-                      onChange={(e) => setCountryCode(e.target.value)} 
+                    <select
+                      value={countryCode}
+                      onChange={(e) => setCountryCode(e.target.value)}
                       style={styles.select}
                     >
                       <option value="+234">+234</option>
@@ -82,35 +155,61 @@ const MessageUs: React.FC = () => {
                     </select>
                     <img src={dropdownIcon} style={styles.dropdownIcon} alt="dropdown" />
                   </div>
-                  <input 
-                    placeholder="Phone Number" 
-                    style={styles.phoneInput} 
+                  <input
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="Phone Number"
+                    type="tel"
+                    style={styles.phoneInput}
                   />
                 </div>
+                {errors.phone && <span style={styles.errorText}>{errors.phone}</span>}
               </div>
 
               {/* Email */}
               <div style={styles.inputGroup}>
-                <label style={styles.label}>Email*</label>
-                <input 
-                  placeholder="example@gmail.com" 
-                  style={isMobile ? styles.inputMobile : styles.input} 
+                <label style={styles.label}>Email</label>
+                <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="example@gmail.com"
+                  style={isMobile ? styles.inputMobile : styles.input}
+                  type="email"
                 />
               </div>
 
               {/* Message */}
               <div style={styles.inputGroup}>
                 <label style={styles.label}>Message*</label>
-                <textarea 
-                  placeholder="Tell us how we can help you..." 
-                  style={isMobile ? styles.textareaMobile : styles.textarea} 
+                <textarea
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Tell us how we can help you..."
+                  style={isMobile ? styles.textareaMobile : styles.textarea}
                   rows={isMobile ? 4 : 4}
                 />
+                {errors.message && <span style={styles.errorText}>{errors.message}</span>}
               </div>
 
+              {statusMessage && (
+                <div
+                  style={
+                    statusType === "error"
+                      ? styles.statusErrorText
+                      : styles.statusSuccessText
+                  }
+                >
+                  {statusMessage}
+                </div>
+              )}
+
               {/* Send Button */}
-              <button style={isMobile ? styles.buttonMobile : styles.button}>
-                Send Message
+              <button
+                type="submit"
+                style={isMobile ? styles.buttonMobile : styles.button}
+                disabled={isSubmitDisabled}
+              >
+                {isSubmitting ? "Sending..." : "Send Message"}
               </button>
             </form>
           </div>
@@ -341,6 +440,29 @@ const styles: { [key: string]: React.CSSProperties } = {
     padding: "12px 14px",
     fontSize: "14px",
     background: "#fff",
+  },
+  errorText: {
+    color: "#d92d20",
+    fontSize: "12px",
+    marginTop: "4px",
+  },
+  statusSuccessText: {
+    color: "#0f5132",
+    background: "#d1e7dd",
+    border: "1px solid #badbcc",
+    padding: "12px 14px",
+    borderRadius: "8px",
+    fontSize: "14px",
+    marginTop: "-10px",
+  },
+  statusErrorText: {
+    color: "#842029",
+    background: "#f8d7da",
+    border: "1px solid #f5c2c7",
+    padding: "12px 14px",
+    borderRadius: "8px",
+    fontSize: "14px",
+    marginTop: "-10px",
   },
   button: {
     marginTop: "8px",

@@ -30,7 +30,7 @@ const Powered: React.FC = () => {
     <section style={styles.container}>
       <p style={styles.top}>Powered by Zam AI</p>
 
-      <h2 style={{ ...styles.heading, fontSize: isMobile ? "24px" : "32px", fontWeight: isMobile ? 500 : 600 }}>Zam AI Powered Features</h2>
+      <h2 style={{ ...styles.heading, fontSize: isMobile ? "24px" : "32px", fontWeight: isMobile ? 400 : 400 }}>Zam AI Powered Features</h2>
 
       <p style={styles.sub}>
         Smarter decisions, safer dispensing, and better business outcomes with ZamAI.
@@ -139,7 +139,7 @@ const styles: { [key: string]: React.CSSProperties } = {
 
   heading: {
     fontSize: "32px",
-    fontWeight: 600,
+    fontWeight: 400,
     color: "#141414",
     marginBottom: "10px",
   },

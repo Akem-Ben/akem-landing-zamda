@@ -31,8 +31,8 @@ const ZamHero: React.FC = () => {
             fontSize: isMobile ? "28px" : "40px",
           }}
         >
-          Complete <span style={{ color: isMobile ? "#201E82" : "#141414", fontWeight: 600 }}>Pharmacy</span> <br />
-          <span style={{ color: isMobile ? "#201E82" : "#141414", fontWeight: 600 }}>Management</span> System
+          Complete <span style={{ color: isMobile ? "#201E82" : "#141414", fontWeight: 400 }}>Pharmacy</span> <br />
+          <span style={{ color: isMobile ? "#201E82" : "#141414", fontWeight: 400 }}>Management</span> System
         </h1>
 
         <p
@@ -84,7 +84,7 @@ const styles: any = {
   },
 
   title: {
-    fontWeight: 600,
+    fontWeight: 400,
     lineHeight: "1.2",
     color: "#141414",
   },

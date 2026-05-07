@@ -167,7 +167,7 @@ const styles: any = {
   },
 
   title: {
-    fontSize: "20px",
+    fontSize: "25px",
     fontWeight: 400,
     margin: "20px 0 48px",
     lineHeight: "1.3",

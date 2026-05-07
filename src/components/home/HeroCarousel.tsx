@@ -36,7 +36,7 @@ const HeroCarousel: React.FC = () => {
           style={{
             ...styles.heading,
             fontSize: isMobile ? "26px" : "42px",
-            fontWeight: 800,
+            fontWeight: 400,
             lineHeight: 1.2,
           }}
         >

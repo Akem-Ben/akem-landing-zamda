@@ -50,7 +50,7 @@ const AboutSection: React.FC = () => {
             />
           </div>
 
-          {/* TEXT (RIGHT ON TABLET + DESKTOP) */}
+          {/* TEXT */}
           <div style={styles.textWrapper}>
             <p style={styles.text}>
               Zamda Health was built to solve real problems pharmacies face every day,
@@ -110,7 +110,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   title: {
     textAlign: "center",
     fontSize: "28px",
-    fontWeight: 600,
+    fontWeight: 400,
     marginBottom: "40px",
     color: "#141414",
   },
@@ -118,10 +118,11 @@ const styles: { [key: string]: React.CSSProperties } = {
   content: {
     display: "flex",
     alignItems: "center",
+    justifyContent: "center"
   },
 
   imageWrapper: {
-    flex: 1,
+    flex: 0.8,
     display: "flex",
     justifyContent: "center",
   },
@@ -133,7 +134,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
 
   textWrapper: {
-    flex: 1,
+    flex: 1.2,
   },
 
   text: {
