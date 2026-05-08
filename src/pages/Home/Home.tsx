@@ -1,4 +1,3 @@
-
 import Navbar from "../../components/shared/NavBar";
 import AboutSection from "../../components/home/AboutUs";
 import WhyChooseUs from "../../components/home/ChooseUs";
@@ -17,22 +16,21 @@ function Home() {
     <div>
       {/* Fixed floating icons */}
       <img src={whatsapp} style={styles.whatsapp} alt="whatsapp" />
-      
+
       <Navbar />
-       <HeroCarousel />
+      <HeroCarousel />
       <HeroBrands />
       <ProductSection />
       <AboutSection />
       <WhyChooseUs />
       <PricingSection />
       <TestimonialSection />
-      <FAQSection/>
+      <FAQSection />
       <BookDemoSection />
       <Footer />
     </div>
   );
 }
-
 
 const styles: { [key: string]: React.CSSProperties } = {
   whatsapp: {

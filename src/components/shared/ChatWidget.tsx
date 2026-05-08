@@ -7,6 +7,7 @@ const ChatWidget: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [showQuick, setShowQuick] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   const [messages, setMessages] = useState([
     {
@@ -27,6 +28,13 @@ const ChatWidget: React.FC = () => {
   ]);
 
   const chatRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     chatRef.current?.scrollTo(0, chatRef.current.scrollHeight);
@@ -73,9 +81,10 @@ const ChatWidget: React.FC = () => {
       {open && (
         <>
           <style>{`.chat-widget-body::-webkit-scrollbar { display: none; } .chat-widget-body { -ms-overflow-style: none; scrollbar-width: none; }`}</style>
-          <div style={styles.container}>
+          <div style={styles.backdrop} onClick={() => setOpen(false)}></div>
+          <div style={{...styles.container, ...(isMobile && styles.containerMobile)}} onClick={(e) => e.stopPropagation()}>
             {/* HEADER */}
-          <div style={styles.header}>
+          <div style={{...styles.header, ...(isMobile && styles.headerMobile)}}>
             <div style={styles.headerLeft}>
               {/* AI ICON  */}
               <img src={avatar} style={styles.headerAvatar} />
@@ -93,7 +102,7 @@ const ChatWidget: React.FC = () => {
           </div>
 
           {/* BODY */}
-          <div ref={chatRef} className="chat-widget-body" style={styles.body}>
+          <div ref={chatRef} className="chat-widget-body" style={{...styles.body, ...(isMobile && styles.bodyMobile)}}>
             {messages.map((msg, i) => (
               <div
                 key={i}
@@ -139,12 +148,12 @@ const ChatWidget: React.FC = () => {
           </div>
 
           {/* INPUT AREA */}
-          <div style={styles.inputArea}>
+          <div style={{...styles.inputArea, ...(isMobile && styles.inputAreaMobile)}}>
             {showQuick && (
               <div style={styles.quickRow}>
-                <button style={styles.quickBtn}>Request a Demo</button>
-                <button style={styles.quickBtn}>Pricing Info</button>
-                <button style={styles.quickBtn}>Technical Support</button>
+                <button style={{...styles.quickBtn, ...(isMobile && styles.quickBtnMobile)}}>Request a Demo</button>
+                <button style={{...styles.quickBtn, ...(isMobile && styles.quickBtnMobile)}}>Pricing Info</button>
+                <button style={{...styles.quickBtn, ...(isMobile && styles.quickBtnMobile)}}>Technical Support</button>
               </div>
             )}
 
@@ -182,6 +191,16 @@ export default ChatWidget;
 /* ================= STYLES ================= */
 
 const styles: any = {
+  backdrop: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: "rgba(0, 0, 0, 0.3)",
+    zIndex: 1099,
+  },
+
   fab: {
     position: "fixed",
     bottom: "16px",
@@ -221,6 +240,15 @@ const styles: any = {
     flexDirection: "column",
     overflow: "hidden",
     zIndex: 1100,
+  },
+
+  containerMobile: {
+    width: "90vw",
+    height: "70vh",
+    bottom: "80px",
+    left: "50%",
+    right: "auto",
+    transform: "translateX(-50%)",
   },
 
   header: {
@@ -314,7 +342,7 @@ const styles: any = {
     display: "flex",
     justifyContent: "center",
     gap: "8px",
-    flexWrap: "wrap",
+    flexWrap: "nowrap",
   },
 
   quickBtn: {
@@ -325,6 +353,14 @@ const styles: any = {
     padding: "7px 12px",
     fontSize: "11px",
     cursor: "pointer",
+  },
+
+  quickBtnMobile: {
+    padding: "6px 8px",
+    fontSize: "9px",
+    whiteSpace: "nowrap",
+    flex: 1,
+    minWidth: 0,
   },
 
   inputRow: {
@@ -348,5 +384,17 @@ const styles: any = {
     borderRadius: "12px",
     padding: "10px 14px",
     cursor: "pointer",
+  },
+
+  headerMobile: {
+    padding: "12px",
+  },
+
+  bodyMobile: {
+    padding: "12px",
+  },
+
+  inputAreaMobile: {
+    padding: "10px",
   },
 };
