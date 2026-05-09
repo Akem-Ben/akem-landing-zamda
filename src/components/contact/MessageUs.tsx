@@ -67,7 +67,10 @@ const MessageUs: React.FC = () => {
       setMessage("");
       setErrors({ fullName: "", phone: "", message: "" });
     } catch (error) {
-      console.error(error);
+      console.error("Contact form error:", error);
+      if (error instanceof Error) {
+        console.error("Error message:", error.message);
+      }
       setStatusType("error");
       setStatusMessage("There was a problem sending your message. Please try again later.");
     } finally {
