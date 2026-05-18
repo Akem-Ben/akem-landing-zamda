@@ -14,11 +14,13 @@ const SMTP_PORT = Number(process.env.SMTP_PORT || 587);
 const SMTP_SECURE = process.env.SMTP_SECURE === "true";
 const SMTP_USER = process.env.SMTP_USER;
 const SMTP_PASS = process.env.SMTP_PASS;
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@zamdahealth.com";
 
 if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
-  console.warn(
+  console.error(
     "Missing SMTP configuration. Please set SMTP_HOST, SMTP_USER, and SMTP_PASS in your environment."
   );
+  process.exit(1);
 }
 
 const transporter = nodemailer.createTransport({
@@ -31,6 +33,15 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// Verify the SMTP connection
+transporter.verify((error, success) => {
+  if (error) {
+    console.error("SMTP connection error:", error);
+  } else {
+    console.log("SMTP connection verified successfully");
+  }
+});
+
 app.post("/api/contact", async (req, res) => {
   const { fullName, companyName, phone, email, message } = req.body;
 
@@ -40,17 +51,19 @@ app.post("/api/contact", async (req, res) => {
 
   const mailOptions = {
     from: `Zamda Health Contact Form <${SMTP_USER}>`,
-    to: "admin@zamdahealth.com",
+    to: ADMIN_EMAIL,
     subject: `New contact request from ${fullName}`,
     text: `Full Name: ${fullName}\nCompany Name: ${companyName || "N/A"}\nPhone: ${phone}\nEmail: ${email || "N/A"}\n\nMessage:\n${message}`,
   };
 
   try {
-    await transporter.sendMail(mailOptions);
+    const result = await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully:", result.messageId);
     return res.status(200).json({ success: true });
   } catch (error) {
-    console.error("Failed to send email:", error);
-    return res.status(500).json({ error: "Unable to send email." });
+    console.error("Failed to send email:", error.message || error);
+    console.error("Full error details:", error);
+    return res.status(500).json({ error: "Unable to send email.", details: error.message });
   }
 });
 

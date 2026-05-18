@@ -230,7 +230,10 @@ const styles: any = {
 
   visual: {
     position: "relative",
+    width: "100%",
+    maxWidth: "900px",
     height: "620px",
+    margin: "0 auto",
     marginTop: "-10px",
     display: "flex",
     justifyContent: "center",
@@ -238,45 +241,46 @@ const styles: any = {
   },
 
   phone: {
-    width: "650px",
-    height: "620px",
+    width: "100%",
+    maxWidth: "650px",
+    height: "auto",
     zIndex: 3,
     position: "relative",
   },
 
   badge1: {
     position: "absolute",
-    width: "290px",
-    top: "130px",
-    left: "46.5%",
-    transform: "translateX(-380px)",
+    width: "300px",
+    top: "33%",
+    left: "18%",
+    transform: "translate(-50%, -50%)",
     zIndex: 4,
   },
 
   badge2: {
     position: "absolute",
-    width: "290px",
-    top: "115px",
-    left: "49.5%",
-    transform: "translateX(130px)",
+    width: "300px",
+    top: "31%",
+    left: "80%",
+    transform: "translate(-50%, -50%)",
     zIndex: 4,
   },
 
   badge3: {
     position: "absolute",
-    width: "360px",
-    top: "420px",
-    left: "43.9%",
-    transform: "translateX(-360px)",
+    width: "300px",
+    top: "80%",
+    left: "23%",
+    transform: "translate(-50%, -50%)",
     zIndex: 4,
   },
 
   badge4: {
     position: "absolute",
-    width: "360px",
-    top: "320px",
-    left: "46.5%",
-    transform: "translateX(140px)",
+    width: "300px",
+    top: "66%",
+    left: "77%",
+    transform: "translate(-50%, -50%)",
     zIndex: 4,
   },
 

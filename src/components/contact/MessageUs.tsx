@@ -67,7 +67,10 @@ const MessageUs: React.FC = () => {
       setMessage("");
       setErrors({ fullName: "", phone: "", message: "" });
     } catch (error) {
-      console.error(error);
+      console.error("Contact form error:", error);
+      if (error instanceof Error) {
+        console.error("Error message:", error.message);
+      }
       setStatusType("error");
       setStatusMessage("There was a problem sending your message. Please try again later.");
     } finally {
@@ -233,13 +236,16 @@ const styles: { [key: string]: React.CSSProperties } = {
     background: "#F2F1FD",
   },
   container: {
-    maxWidth: "1200px",
+    width: "100%",
+    maxWidth: "1190px",
     margin: "0 auto",
     display: "flex",
     gap: "40px",
     alignItems: "stretch",
   },
   containerMobile: {
+    width: "100%",
+    maxWidth: "1190px",
     margin: "0 auto",
     display: "flex",
     flexDirection: "column",
