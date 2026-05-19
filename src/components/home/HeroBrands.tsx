@@ -1,21 +1,28 @@
 import React from "react";
 
-import amazon from "../../assets/amazon.png";
-import axon from "../../assets/axon.png";
-import hormel from "../../assets/hormel.png";
-import mercedes from "../../assets/mercedes.png";
-
-const brands = [amazon, axon, hormel, amazon, axon, mercedes, amazon, mercedes];
+const brands = [
+  "BENBOL PHARM.",
+  "NASCARE PHARM.",
+  "JOLUFED PHARM.",
+  "SYLNEY PHARM.",
+  "ROCKAID PHARM.",
+  "PAUPRIX PHARM.",
+  "EPHRE-KINGS PHARM.",
+];
 
 const Hero: React.FC = () => {
   return (
     <section style={styles.trustedFull}>
       <div style={styles.container}>
         <p style={styles.trustedText}>Trusted by these Pharmacies</p>
+        {/* Added a keyframe animation for the scrolling text */}
+        <style>{`@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-300px * ${brands.length})); } }`}</style>
 
         <div style={styles.brandTrack}>
           {[...brands, ...brands].map((logo, i) => (
-            <img key={i} src={logo} style={styles.logo} />
+            <span key={i} style={styles.logo}>
+              {logo}
+            </span>
           ))}
         </div>
       </div>
@@ -33,7 +40,6 @@ const styles: { [key: string]: React.CSSProperties } = {
       "linear-gradient(90deg, #0f1a5a 0%, #1f2a8a 50%, #0f1a5a 100%)",
     boxShadow: "inset 0 0 30px rgba(0,0,0,0.2)",
     padding: "20px 0",
-    overflow: "hidden",
   },
 
   trustedText: {
@@ -46,13 +52,20 @@ const styles: { [key: string]: React.CSSProperties } = {
   brandTrack: {
     display: "flex",
     gap: "50px",
-    width: "max-content",
+    width: `calc(300px * ${brands.length * 2})`, // Adjust width based on item + gap
     animation: "scroll 15s linear infinite",
   },
 
   logo: {
-    height: "25px",
-    opacity: 0.9,
+    height: "auto",
+    opacity: 0.6,
+    filter: "blur(0.5px)",
+    color: "#fff",
+    fontSize: "20px",
+    fontWeight: 600,
+    flexShrink: 0,
+    width: "250px",
+    textAlign: "center",
   },
 
   container: {
@@ -60,5 +73,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     maxWidth: "1190px",
     margin: "0 auto",
     padding: "0 20px",
+    overflow: "hidden",
+    WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+    maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
   },
 };

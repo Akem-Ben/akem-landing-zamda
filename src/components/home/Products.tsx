@@ -237,6 +237,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     borderRadius: "10px",
     padding: "14px 23px",
     cursor: "pointer",
+    transition: "all 0.3s ease",
   },
 
   imageWrapper: {

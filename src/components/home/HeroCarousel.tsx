@@ -29,13 +29,18 @@ const HeroCarousel: React.FC = () => {
   const slides = ["home", "zampos", "zammobile"];
 
   const renderHomeSlide = () => (
-    <div style={styles.heroSlide}>
+    <div 
+      style={{
+        ...styles.heroSlide,
+        borderRadius: isMobile ? "0 0 55px 55px" : "0 0 72px 72px",
+      }}
+    >
       {/* TEXT */}
       <div style={styles.content}>
         <h1
           style={{
             ...styles.heading,
-            fontSize: isMobile ? "26px" : "42px",
+            fontSize: isMobile ? "28px" : "40px",
             fontWeight: 400,
             lineHeight: 1.2,
           }}
@@ -65,7 +70,14 @@ const HeroCarousel: React.FC = () => {
           online.
         </p>
 
-        <button style={styles.button}>Learn More</button>
+        <button
+          style={{
+            ...styles.button,
+            marginBottom: isMobile ? "24px" : "0px",
+          }}
+        >
+          Learn More
+        </button>
 
         {!isMobile && (
           <div style={styles.stats}>
@@ -134,19 +146,23 @@ const HeroCarousel: React.FC = () => {
         <div
           style={{
             ...styles.imageBox,
-            height: isMobile ? "320px" : "auto",
+            height: isMobile ? "380px" : "480px",
             borderRadius: isMobile ? "30px" : "0px",
-            overflow: "visible",
+            overflow: "hidden",
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "center",
           }}
         >
           <img
             src={heroImg}
             style={{
               ...styles.heroImage,
-              height: isMobile ? "100%" : "auto",
+              height: "100%",
+              width: "auto",
+              maxWidth: "100%",
               objectPosition: isMobile ? "center top" : "center",
-              borderBottomLeftRadius: isMobile ? "30px" : "0px",
-              borderBottomRightRadius: isMobile ? "30px" : "0px",
+              borderRadius: 0,
             }}
           />
         </div>
@@ -161,18 +177,27 @@ const HeroCarousel: React.FC = () => {
   };
 
   return (
-    <section style={styles.carouselContainer}>
-      <div style={styles.sliderWrapper}>
+    <section 
+      style={{
+        ...styles.carouselContainer,
+        borderRadius: isMobile ? "0 0 55px 55px" : "0 0 72px 72px",
+        height: isMobile ? "700px" : "800px",
+      }}
+    >
+      <div style={{ ...styles.sliderWrapper, height: "100%" }}>
         <div
           style={{
             ...styles.slides,
+            height: "100%",
             transform: `translateX(-${activeSlide * 100}vw)`,
             width: `${slides.length * 100}vw`,
           }}
         >
           {slides.map((slide) => (
             <div key={slide} style={styles.slide}>
-              {renderSlide(slide)}
+              <div style={{ ...styles.slideInner, height: "100%", borderRadius: isMobile ? "0 0 55px 55px" : "0 0 72px 72px" }}>
+                {renderSlide(slide)}
+              </div>
             </div>
           ))}
         </div>
@@ -202,9 +227,9 @@ const styles = {
   carouselContainer: {
     position: "relative",
     overflow: "hidden",
-    background: "#F2F1FD",
-    minHeight: "700px",
+    background: "transparent",
   } as React.CSSProperties,
+  slideInner: { width: "100%", height: "100%", overflow: "hidden" } as React.CSSProperties,
 
   sliderWrapper: {
     width: "100%",
@@ -218,16 +243,16 @@ const styles = {
   slide: {
     width: "100vw",
     flexShrink: 0,
-    minHeight: "700px",
+    height: "100%",
   } as React.CSSProperties,
 
   heroSlide: {
     background: "#F2F1FD",
-    padding: "70px 20px 0px",
+    padding: "90px 20px 0px",
     textAlign: "center",
     fontFamily: "Arial, sans-serif",
     overflowX: "hidden",
-    minHeight: "700px",
+    height: "100%",
     display: "flex",
     flexDirection: "column",
   } as React.CSSProperties,
@@ -258,13 +283,14 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     gap: "35px",
-    marginTop: "35px",
+    marginTop: "40px",
+    marginBottom: "45px",
   } as React.CSSProperties,
 
   statNumber: {
     margin: 0,
     fontSize: "22px",
-    fontWeight: 800,
+    fontWeight: 500,
   } as React.CSSProperties,
 
   statText: {
@@ -272,7 +298,7 @@ const styles = {
   } as React.CSSProperties,
 
   imageWrapper: {
-    marginTop: "60px",
+    marginTop: "auto",
     display: "flex",
     justifyContent: "center",
   } as React.CSSProperties,

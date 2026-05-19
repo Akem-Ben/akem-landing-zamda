@@ -43,22 +43,22 @@ const Footer: React.FC = () => {
             </p>
 
             <div style={styles.socials}>
-              <a href="https://twitter.com/zamdahealth1" target="_blank" rel="noopener noreferrer">
+              <a href="https://twitter.com/zamdahealth1" target="_blank" rel="noopener noreferrer" className="hover-lift">
                 <img src={twitter} style={styles.socialIcon} alt="twitter" />
               </a>
-              <a href="https://instagram.com/zamdahealth" target="_blank" rel="noopener noreferrer">
+              <a href="https://instagram.com/zamdahealth" target="_blank" rel="noopener noreferrer" className="hover-lift">
                 <img src={instagram} style={styles.socialIcon} alt="instagram" />
               </a>
-              <a href="https://tiktok.com/@Zamdahealth5" target="_blank" rel="noopener noreferrer">
+              <a href="https://tiktok.com/@Zamdahealth5" target="_blank" rel="noopener noreferrer" className="hover-lift">
                 <img src={tiktok} style={styles.socialIcon} alt="tiktok" />
               </a>
-              <a href="https://linkedin.com/company/zamdahealth" target="_blank" rel="noopener noreferrer">
+              <a href="https://linkedin.com/company/zamdahealth" target="_blank" rel="noopener noreferrer" className="hover-lift">
                 <img src={linkedin} style={styles.socialIcon} alt="linkedin" />
               </a>
-              <a href="https://youtube.com/@zamdahealth" target="_blank" rel="noopener noreferrer">
+              <a href="https://youtube.com/@zamdahealth" target="_blank" rel="noopener noreferrer" className="hover-lift">
                 <img src={youtube} style={styles.socialIcon} alt="youtube" />
               </a>
-              <a href="https://facebook.com/Zamdahealth" target="_blank" rel="noopener noreferrer">
+              <a href="https://facebook.com/Zamdahealth" target="_blank" rel="noopener noreferrer" className="hover-lift">
                 <img src={facebook} style={styles.socialIcon} alt="facebook" />
               </a>
             </div>

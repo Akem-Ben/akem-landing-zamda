@@ -43,6 +43,58 @@ const Navbar: React.FC = () => {
 
   return (
     <>
+      <style>{`
+        button, .hover-lift {
+          transition: all 0.3s ease !important;
+        }
+        button:hover:not(:disabled), .hover-lift:hover {
+          transform: translateY(-2px) scale(1.02);
+          filter: brightness(1.1);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        button:active:not(:disabled), .hover-lift:active {
+          transform: translateY(0) scale(0.98);
+        }
+        button:disabled {
+          cursor: not-allowed !important;
+          opacity: 0.6;
+        }
+
+        /* Floating Animation for Badges/Decorative Elements */
+        @keyframes floating {
+          0% { transform: translate(0, 0px); }
+          50% { transform: translate(0, -15px); }
+          100% { transform: translate(0, -0px); }
+        }
+        .animate-float {
+          animation: floating 4s ease-in-out infinite;
+        }
+        .animate-float-delayed {
+          animation: floating 5s ease-in-out infinite;
+          animation-delay: 1s;
+        }
+
+        /* Scroll Reveal Animations */
+        @keyframes revealFadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            filter: blur(5px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+          }
+        }
+        .reveal-on-scroll {
+          opacity: 0;
+          will-change: transform, opacity, filter;
+        }
+        .reveal-on-scroll.is-visible {
+          animation: revealFadeInUp 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+        }
+      `}</style>
       <nav
         style={{
           ...styles.nav,
@@ -221,14 +273,28 @@ const Navbar: React.FC = () => {
             style={{ textDecoration: "none" }} 
             onClick={() => setOpenSidebar(false)}
           >
-            <button style={styles.download}>Download App</button>
+            <button
+              style={{
+                ...styles.download,
+                width: "100%",
+              }}
+            >
+              Download App
+            </button>
           </Link>
           <Link 
             to="/#book-demo" 
             style={{ textDecoration: "none" }} 
             onClick={() => setOpenSidebar(false)}
           >
-            <button style={styles.demo}>Request Demo</button>
+            <button
+              style={{
+                ...styles.demo,
+                width: "100%", // Make button full width on mobile
+              }}
+            >
+              Request Demo
+            </button>
           </Link>
         </div>
       </div>
@@ -320,6 +386,7 @@ const styles = {
     borderRadius: "6px",
     border: "none",
     cursor: "pointer",
+    transition: "all 0.3s ease",
   },
 
   demo: {
@@ -328,6 +395,7 @@ const styles = {
     border: "1px solid #ddd",
     backgroundColor: "#f9f9f9",
     cursor: "pointer",
+    transition: "all 0.3s ease",
   },
 
   hamburger: {

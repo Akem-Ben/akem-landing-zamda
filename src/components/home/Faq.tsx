@@ -213,6 +213,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     cursor: "pointer",
     fontSize: "12px",
     fontWeight: 500,
+    transition: "all 0.3s ease",
   },
 
   secondaryBtn: {
@@ -223,6 +224,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     cursor: "pointer",
     fontSize: "12px",
     fontWeight: 500,
+    transition: "all 0.3s ease",
   },
 
   or: {

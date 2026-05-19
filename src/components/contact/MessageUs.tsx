@@ -78,9 +78,6 @@ const MessageUs: React.FC = () => {
     }
   };
 
-  const isSubmitDisabled =
-    !fullName.trim() || !phone.trim() || !message.trim() || isSubmitting;
-
   return (
     <section style={isMobile ? styles.sectionMobile : styles.section}>
       <div style={isMobile ? styles.containerMobile : styles.container}>
@@ -209,8 +206,9 @@ const MessageUs: React.FC = () => {
               {/* Send Button */}
               <button
                 type="submit"
+                className="hover-lift"
                 style={isMobile ? styles.buttonMobile : styles.button}
-                disabled={isSubmitDisabled}
+                disabled={isSubmitting}
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
               </button>
@@ -261,7 +259,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     color: "#201E82",
     padding: "6px 16px",
     borderRadius: "100px",
-    fontSize: "16px",
+    fontSize: "14px",
     display: "inline-block",
     marginBottom: "16px",
     fontWeight: 400,
@@ -482,6 +480,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     cursor: "pointer",
     fontWeight: 600,
     fontSize: "14px",
+    transition: "all 0.3s ease",
   },
   buttonMobile: {
     marginTop: "8px",
@@ -494,5 +493,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontWeight: 600,
     fontSize: "14px",
     width: "100%",
+    transition: "all 0.3s ease",
   },
 };

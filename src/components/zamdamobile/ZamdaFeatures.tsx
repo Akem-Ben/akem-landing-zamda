@@ -233,5 +233,6 @@ const styles: any = {
     border: "none",
     cursor: "pointer",
     fontWeight: 500,
+    transition: "all 0.3s ease",
   },
 };

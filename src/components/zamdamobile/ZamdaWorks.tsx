@@ -246,5 +246,6 @@ const styles: any = {
     borderRadius: "8px",
     border: "none",
     fontSize: "12px",
+    transition: "all 0.3s ease",
   },
 };

@@ -21,7 +21,13 @@ const ZamdaHero: React.FC = () => {
   }, []);
 
   return (
-    <section style={styles.container}>
+    <section 
+      style={{ 
+        ...styles.container, 
+        height: "100%", 
+        display: "flex", 
+        flexDirection: "column" 
+      }}>
       {/* TEXT */}
       <div style={styles.content}>
         <h1
@@ -82,8 +88,8 @@ const ZamdaHero: React.FC = () => {
             }),
           }}
         >
-          <div
-            style={{
+          <div className="hover-lift"
+            style={{ 
               ...styles.storeBtn,
               ...(isMobile && {
                 padding: "10px 12px",
@@ -98,7 +104,7 @@ const ZamdaHero: React.FC = () => {
             </div>
           </div>
 
-          <div
+          <div className="hover-lift"
             style={{
               ...styles.storeBtn,
               ...(isMobile && {
@@ -163,11 +169,12 @@ const styles: any = {
     borderRadius: "0 0 72px 72px",
     padding: "60px 20px 0",
     overflow: "hidden",
+    width: "100%",
   },
 
   content: {
     maxWidth: "760px",
-    margin: "0 auto",
+    margin: "0 auto 20px",
     textAlign: "center",
   },
 
@@ -232,9 +239,8 @@ const styles: any = {
     position: "relative",
     width: "100%",
     maxWidth: "900px",
-    height: "620px",
-    margin: "0 auto",
-    marginTop: "-10px",
+    height: "auto",
+    margin: "auto auto 0",
     display: "flex",
     justifyContent: "center",
     alignItems: "flex-end",

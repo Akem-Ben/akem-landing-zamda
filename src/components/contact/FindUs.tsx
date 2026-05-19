@@ -42,6 +42,7 @@ const FindUs: React.FC = () => {
             href={item.link}
             target="_blank"
             rel="noopener noreferrer"
+            className="hover-lift"
             style={isMobile ? styles.cardMobile : styles.card}
           >
             <img src={item.icon} style={isMobile ? styles.iconMobile : styles.icon} alt={item.name} />

@@ -175,13 +175,13 @@ const ChatWidget: React.FC = () => {
       )}
 
       {/* FLOAT BUTTON */}
-      <button style={styles.fab} onClick={() => setOpen(!open)}>
+      {/* <button style={styles.fab} onClick={() => setOpen(!open)}>
         {open ? (
           <span style={styles.closeIcon}>×</span>
         ) : (
           <img src={aiIcon} style={{ width: "100%", height: "100%" }} />
         )}
-      </button>
+      </button> */}
     </>
   );
 };

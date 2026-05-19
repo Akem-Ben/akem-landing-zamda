@@ -5,20 +5,29 @@ import Powered from "../../components/zampos/Powered";
 import PricingSection from "../../components/shared/Pricing";
 import BookDemoSection from "../../components/shared/BookDemo";
 import Footer from "../../components/shared/Footer";
-import whatsapp from "../../assets/whatsapp.png";
+import ScrollReveal from "../../components/shared/ScrollReveal";
+// import whatsapp from "../../assets/whatsapp.png";
 
 function ZamPos() {
   return (
     <div>
       {/* Fixed floating icons */}
-      <img src={whatsapp} style={styles.whatsapp} alt="whatsapp" />
+      {/* <img src={whatsapp} style={styles.whatsapp} alt="whatsapp" /> */}
 
       <Navbar />
       <ZamHero />
-      <FeaturesSection />
-      <Powered />
-      <PricingSection />
-      <BookDemoSection />
+      <ScrollReveal>
+        <FeaturesSection />
+      </ScrollReveal>
+      <ScrollReveal>
+        <Powered />
+      </ScrollReveal>
+      <ScrollReveal>
+        <PricingSection />
+      </ScrollReveal>
+      <ScrollReveal>
+        <BookDemoSection />
+      </ScrollReveal>
       <Footer />
     </div>
   );

@@ -305,6 +305,8 @@ const styles = {
     alignItems: "center",
     gap: "8px",
     color: "#201E82",
+    cursor: "pointer",
+    transition: "all 0.3s ease",
   } as React.CSSProperties,
 
   arrowIcon: {

@@ -64,7 +64,7 @@ const ZamdaApp: React.FC = () => {
             the future of health care.
           </p>
 
-          <div
+          <div 
             style={{
               ...styles.storeRow,
               ...(isMobile && {
@@ -74,7 +74,7 @@ const ZamdaApp: React.FC = () => {
               }),
             }}
           >
-            <StoreButton
+            <StoreButton  
               icon={appStore}
               small="Download on the"
               big="App Store"
@@ -136,6 +136,7 @@ const StoreButton = ({
 }) => {
   return (
     <div
+      className="hover-lift"
       style={{
         ...styles.storeBtn,
         ...(isMobile && {
@@ -254,6 +255,7 @@ const styles: any = {
     boxShadow: "0 14px 28px rgba(0,0,0,0.18)",
     cursor: "pointer",
     zIndex: 2,
+    transition: "all 0.3s ease",
   },
 
   storeIcon: {
