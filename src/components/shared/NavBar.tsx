@@ -60,20 +60,6 @@ const Navbar: React.FC = () => {
           opacity: 0.6;
         }
 
-        /* Floating Animation for Badges/Decorative Elements */
-        @keyframes floating {
-          0% { transform: translate(0, 0px); }
-          50% { transform: translate(0, -15px); }
-          100% { transform: translate(0, -0px); }
-        }
-        .animate-float {
-          animation: floating 4s ease-in-out infinite;
-        }
-        .animate-float-delayed {
-          animation: floating 5s ease-in-out infinite;
-          animation-delay: 1s;
-        }
-
         /* Scroll Reveal Animations */
         @keyframes revealFadeInUp {
           from {

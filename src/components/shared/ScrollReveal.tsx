@@ -2,10 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 
 interface ScrollRevealProps {
   children: React.ReactNode;
-  stagger?: boolean;
 }
 
-const ScrollReveal: React.FC<ScrollRevealProps> = ({ children, stagger }) => {
+const ScrollReveal: React.FC<ScrollRevealProps> = ({ children }) => {
   const [isVisible, setVisible] = useState(false);
   const domRef = useRef<HTMLDivElement>(null);
 
@@ -28,11 +27,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({ children, stagger }) => {
   }, []);
 
   return (
-    <div 
-      ref={domRef} 
-      className={`${stagger ? 'stagger-reveal' : 'reveal-on-scroll'} 
-      ${isVisible ? "is-visible" : ""}`}
-    >
+    <div ref={domRef} className={`reveal-on-scroll ${isVisible ? "is-visible" : ""}`}>
       {children}
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import checkIcon from "../../assets/check-fill.png";
 import dropdownIcon from "../../assets/dropdown.png";
-import apiClient from "../../services/axiosInstance";
+
 
 const MessageUs: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -49,30 +49,57 @@ const MessageUs: React.FC = () => {
     setStatusMessage("");
     setStatusType("");
 
+    console.log(handleSubmit)
+
     try {
-      await apiClient.post("/api/contact", {
-        fullName: fullName.trim(),
-        companyName: companyName.trim(),
-        phone: `${countryCode} ${phone.trim()}`,
-        email: email.trim(),
-        message: message.trim(),
+      const response = await fetch("http://localhost:5000/send-message", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName: fullName.trim(),
+          company: companyName.trim(),
+          phone: phone.trim(),
+          countryCode,
+          email: email.trim(),
+          message: message.trim(),
+        }),
       });
 
-      setStatusType("success");
-      setStatusMessage("Message sent successfully. Our team will reach out soon.");
-      setFullName("");
-      setCompanyName("");
-      setPhone("");
-      setEmail("");
-      setMessage("");
-      setErrors({ fullName: "", phone: "", message: "" });
+      const data = await response.json();
+
+      console.log("Response:", data);
+
+      if (data.success) {
+        setStatusType("success");
+        setStatusMessage(
+          "Message sent successfully. Our team will reach out soon.",
+        );
+
+        // Clear form
+        setFullName("");
+        setCompanyName("");
+        setPhone("");
+        setEmail("");
+        setMessage("");
+
+        setErrors({
+          fullName: "",
+          phone: "",
+          message: "",
+        });
+      } else {
+        setStatusType("error");
+        setStatusMessage(data.message || "Failed to send message.");
+      }
     } catch (error) {
       console.error("Contact form error:", error);
-      if (error instanceof Error) {
-        console.error("Error message:", error.message);
-      }
+
       setStatusType("error");
-      setStatusMessage("There was a problem sending your message. Please try again later.");
+      setStatusMessage(
+        "There was a problem sending your message. Please try again later.",
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -86,11 +113,16 @@ const MessageUs: React.FC = () => {
             <span style={styles.badge}>Send us a Message</span>
             <h2 style={styles.title}>Tell Us What's On Your Mind</h2>
             <p style={styles.text}>
-              Fill out the form and our team will get back to you within 24 hours.
-              For urgent matters, reach us directly via WhatsApp or phone.
+              Fill out the form and our team will get back to you within 24
+              hours. For urgent matters, reach us directly via WhatsApp or
+              phone.
             </p>
             <div style={styles.points}>
-              {["Quick Response guaranteed", "Dedicated support specialists", "Your information is protected"].map((item, i) => (
+              {[
+                "Quick Response guaranteed",
+                "Dedicated support specialists",
+                "Your information is protected",
+              ].map((item, i) => (
                 <div key={i} style={styles.point}>
                   <img src={checkIcon} style={styles.checkIcon} alt="check" />
                   <span>{item}</span>
@@ -106,7 +138,8 @@ const MessageUs: React.FC = () => {
               <span style={styles.badgeMobile}>Send us a Message</span>
               <h2 style={styles.titleMobile}>Tell Us What's On Your Mind</h2>
               <p style={styles.textMobile}>
-                Fill out the form and our team will get back to you within 24 hours.
+                Fill out the form and our team will get back to you within 24
+                hours.
               </p>
             </div>
           )}
@@ -125,7 +158,9 @@ const MessageUs: React.FC = () => {
                   placeholder="Enter your full name"
                   style={isMobile ? styles.inputMobile : styles.input}
                 />
-                {errors.fullName && <span style={styles.errorText}>{errors.fullName}</span>}
+                {errors.fullName && (
+                  <span style={styles.errorText}>{errors.fullName}</span>
+                )}
               </div>
 
               {/* Company Name - separate row on mobile */}
@@ -142,7 +177,11 @@ const MessageUs: React.FC = () => {
               {/* Phone Number - separate row on mobile */}
               <div style={styles.inputGroup}>
                 <label style={styles.label}>Phone Number*</label>
-                <div style={isMobile ? styles.phoneWrapperMobile : styles.phoneWrapper}>
+                <div
+                  style={
+                    isMobile ? styles.phoneWrapperMobile : styles.phoneWrapper
+                  }
+                >
                   <div style={styles.countryBox}>
                     <select
                       value={countryCode}
@@ -153,7 +192,11 @@ const MessageUs: React.FC = () => {
                       <option value="+1">+1</option>
                       <option value="+44">+44</option>
                     </select>
-                    <img src={dropdownIcon} style={styles.dropdownIcon} alt="dropdown" />
+                    <img
+                      src={dropdownIcon}
+                      style={styles.dropdownIcon}
+                      alt="dropdown"
+                    />
                   </div>
                   <input
                     value={phone}
@@ -163,7 +206,9 @@ const MessageUs: React.FC = () => {
                     style={styles.phoneInput}
                   />
                 </div>
-                {errors.phone && <span style={styles.errorText}>{errors.phone}</span>}
+                {errors.phone && (
+                  <span style={styles.errorText}>{errors.phone}</span>
+                )}
               </div>
 
               {/* Email */}
@@ -188,7 +233,9 @@ const MessageUs: React.FC = () => {
                   style={isMobile ? styles.textareaMobile : styles.textarea}
                   rows={isMobile ? 4 : 4}
                 />
-                {errors.message && <span style={styles.errorText}>{errors.message}</span>}
+                {errors.message && (
+                  <span style={styles.errorText}>{errors.message}</span>
+                )}
               </div>
 
               {statusMessage && (
