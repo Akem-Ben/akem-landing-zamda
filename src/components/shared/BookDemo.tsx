@@ -20,7 +20,7 @@ const BookDemoSection: React.FC = () => {
   }, []);
 
   return (
-    <section style={styles.section}>
+    <section id="book-demo" style={styles.section}>
       <div
         style={{
           ...styles.wrapper,

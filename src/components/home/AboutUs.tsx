@@ -97,12 +97,14 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
 
   badge: {
+    width: "103px",
+    height: "36px",
     display: "inline-block",
-    padding: "6px 14px",
+    padding: "6px 16px",
     background: "#ECFFFE",
     color: "#201E82",
-    borderRadius: "999px",
-    fontSize: "12px",
+    borderRadius: "100px",
+    fontSize: "14px",
     fontWeight: 500,
     marginBottom: "15px",
   },

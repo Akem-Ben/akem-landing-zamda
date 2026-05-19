@@ -22,7 +22,7 @@ const plans: Plan[] = [
   {
     name: "Basic",
     monthlyPrice: 2500,
-    annualPrice: 25000,
+    annualPrice: 24000,
     description: "Perfect for small pharmacies getting started.",
     features: [
       { text: "Fast checkouts", included: true },
@@ -40,7 +40,7 @@ const plans: Plan[] = [
   {
     name: "Pro",
     monthlyPrice: 3500,
-    annualPrice: 35000,
+    annualPrice: 36000,
     description: "Perfect for expanding pharmacies.",
     highlighted: true,
     features: [
@@ -59,7 +59,7 @@ const plans: Plan[] = [
   {
     name: "Enterprise",
     monthlyPrice: 4500,
-    annualPrice: 45000,
+    annualPrice: 48000,
     description: "Perfect for multi branch pharmacies.",
     features: [
       { text: "Fast checkouts", included: true },
@@ -279,11 +279,13 @@ const styles: any = {
   header: { marginBottom: "40px" },
 
   badge: {
+    width: "170px",
+    height: "36px",
     background: "#ECFFFE",
     color: "#201E82",
     padding: "6px 12px",
-    borderRadius: "20px",
-    fontSize: "12px",
+    borderRadius: "50px",
+    fontSize: "14px",
   },
 
   title: { fontSize: "25px", margin: "12px 0", color: "#141414", fontWeight: 400, },

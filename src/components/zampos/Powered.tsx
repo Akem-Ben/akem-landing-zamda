@@ -127,12 +127,14 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
 
   top: {
-    fontSize: "12px",
+    width: "180px",
+    height: "36px",
+    fontSize: "14px",
     fontWeight: 400,
     color: "#201E82",
     background: "#ECFFFE",
-    padding: "6px 14px",
-    borderRadius: "20px",
+    padding: "6px 16px",
+    borderRadius: "100px",
     display: "inline-block",
     marginBottom: "12px",
   },

@@ -176,12 +176,15 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
 
   badge: {
+    width: "121px",
+    height: "36px",
     display: "inline-block",
     padding: "6px 16px",
     background: "#ECFFFE",
     color: "#201E82",
-    borderRadius: "999px",
-    fontSize: "11px",
+    borderRadius: "100px",
+    // gap: "10px",
+    fontSize: "14px",
     fontWeight: 600,
     marginBottom: "18px",
   },
@@ -215,6 +218,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   activeTab: {
     background: "#ffffff",
     fontWeight: 500,
+    borderRadius: "10px",
     boxShadow: "0 3px 10px rgba(0,0,0,0.08)",
   },
 

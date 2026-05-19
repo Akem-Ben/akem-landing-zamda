@@ -26,6 +26,18 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.hash]);
+
   const isMobile = screenWidth <= 768;
   const isTablet = screenWidth > 768 && screenWidth <= 1024;
 
@@ -36,6 +48,7 @@ const Navbar: React.FC = () => {
           ...styles.nav,
           // padding: isTablet ? "15px 40px" : "15px 80px", 
           padding: isMobile ? "15px 20px" : "15px 80px", 
+          height: isMobile ? "60px" : "90px",
         }}
       >
         <div style={styles.navContainer}>
@@ -117,8 +130,12 @@ const Navbar: React.FC = () => {
             transform: isTablet ? "scale(0.9)" : "scale(1)",
           }}
         >
-          <button style={styles.download}>Download App</button>
-          <button style={styles.demo}>Request Demo</button>
+          <Link to="/zammobile" style={{ textDecoration: "none" }}>
+            <button style={styles.download}>Download App</button>
+          </Link>
+          <Link to="/#book-demo" style={{ textDecoration: "none" }}>
+            <button style={styles.demo}>Request Demo</button>
+          </Link>
         </div>
 
         {/* Hamburger */}
@@ -199,8 +216,20 @@ const Navbar: React.FC = () => {
         </ul>
 
         <div style={styles.sidebarButtons}>
-          <button style={styles.download}>Download App</button>
-          <button style={styles.demo}>Request Demo</button>
+          <Link 
+            to="/zammobile" 
+            style={{ textDecoration: "none" }} 
+            onClick={() => setOpenSidebar(false)}
+          >
+            <button style={styles.download}>Download App</button>
+          </Link>
+          <Link 
+            to="/#book-demo" 
+            style={{ textDecoration: "none" }} 
+            onClick={() => setOpenSidebar(false)}
+          >
+            <button style={styles.demo}>Request Demo</button>
+          </Link>
         </div>
       </div>
 
