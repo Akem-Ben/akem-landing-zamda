@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import checkIcon from "../../assets/check-fill.png";
 import dropdownIcon from "../../assets/dropdown.png";
 
-
 const MessageUs: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [countryCode, setCountryCode] = useState("+234");
@@ -38,6 +37,7 @@ const MessageUs: React.FC = () => {
     return !nextErrors.fullName && !nextErrors.phone && !nextErrors.message;
   };
 
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -49,30 +49,36 @@ const MessageUs: React.FC = () => {
     setStatusMessage("");
     setStatusType("");
 
-    console.log(handleSubmit)
-
     try {
-      const response = await fetch("http://localhost:5000/send-message", {
+      // Payload matching Zamda API structure
+      const payload = {
+        fullName: fullName.trim(),
+        email: email.trim(),
+        phone: phone.trim(),
+        countryCode,
+        company: companyName.trim(),
+        message: message.trim(),
+      };
+
+      console.log("Sending payload:", payload);
+
+      const response = await fetch("https://alpha.zamdahealth.com/v1/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          fullName: fullName.trim(),
-          company: companyName.trim(),
-          phone: phone.trim(),
-          countryCode,
-          email: email.trim(),
-          message: message.trim(),
-        }),
+        body: JSON.stringify(payload),
       });
 
+      // Convert response to JSON
       const data = await response.json();
 
-      console.log("Response:", data);
+      console.log("API Response:", data);
 
-      if (data.success) {
+      // Success response
+      if (response.ok) {
         setStatusType("success");
+
         setStatusMessage(
           "Message sent successfully. Our team will reach out soon.",
         );
@@ -84,19 +90,23 @@ const MessageUs: React.FC = () => {
         setEmail("");
         setMessage("");
 
+        // Clear validation errors
         setErrors({
           fullName: "",
           phone: "",
           message: "",
         });
       } else {
+        // API error response
         setStatusType("error");
+
         setStatusMessage(data.message || "Failed to send message.");
       }
     } catch (error) {
       console.error("Contact form error:", error);
 
       setStatusType("error");
+
       setStatusMessage(
         "There was a problem sending your message. Please try again later.",
       );
@@ -104,7 +114,7 @@ const MessageUs: React.FC = () => {
       setIsSubmitting(false);
     }
   };
-
+  
   return (
     <section style={isMobile ? styles.sectionMobile : styles.section}>
       <div style={isMobile ? styles.containerMobile : styles.container}>
