@@ -42,6 +42,7 @@ const FindUs: React.FC = () => {
             href={item.link}
             target="_blank"
             rel="noopener noreferrer"
+            className="hover-lift"
             style={isMobile ? styles.cardMobile : styles.card}
           >
             <img src={item.icon} style={isMobile ? styles.iconMobile : styles.icon} alt={item.name} />
@@ -82,13 +83,15 @@ const styles: { [key: string]: React.CSSProperties } = {
     margin: "0 auto",
   },
   top: {
+    width: "183px",
+    height: "36px",
     display: "inline-block",
-    padding: "6px 14px",
+    padding: "6px 16px",
     background: "#ECFFFE",
     color: "#201E82",
-    borderRadius: "999px",
-    fontSize: "12px",
-    fontWeight: 500,
+    borderRadius: "100px",
+    fontSize: "14px",
+    fontWeight: 400,
     marginBottom: "15px",
   },
   heading: {

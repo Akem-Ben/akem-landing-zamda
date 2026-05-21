@@ -129,8 +129,8 @@
 
 import React, { useEffect, useState } from "react";
 import mainImage from "../../assets/hear.png";
-import whatsapp from "../../assets/whatsapp.png";
-import ai from "../../assets/ai.png";
+// import whatsapp from "../../assets/whatsapp.png";
+// import ai from "../../assets/ai.png";
 
 const HearFromYou: React.FC = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -149,8 +149,8 @@ const HearFromYou: React.FC = () => {
   return (
     <>
       {/* floating icons */}
-      <img src={whatsapp} style={styles.whatsapp} alt="whatsapp" />
-      <img src={ai} style={styles.ai} alt="ai" />
+      {/* <img src={whatsapp} style={styles.whatsapp} alt="whatsapp" />
+      <img src={ai} style={styles.ai} alt="ai" /> */}
 
       <section style={styles.container}>
         <div style={styles.content}>

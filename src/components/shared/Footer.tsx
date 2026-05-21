@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/Logo-2.png";
+
 import twitter from "../../assets/twitter.png";
 import instagram from "../../assets/instagram.png";
-import linkedin from "../../assets/tiktok.png";
+import tiktok from "../../assets/tiktok.png";
+import linkedin from "../../assets/linkedin.png";
+import youtube from "../../assets/youtube.png";
+import facebook from "../../assets/facebook.png";
 
 const Footer: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -39,9 +43,24 @@ const Footer: React.FC = () => {
             </p>
 
             <div style={styles.socials}>
-              <img src={twitter} style={styles.socialIcon} />
-              <img src={instagram} style={styles.socialIcon} />
-              <img src={linkedin} style={styles.socialIcon} />
+              <a href="https://twitter.com/zamdahealth1" target="_blank" rel="noopener noreferrer" className="hover-lift">
+                <img src={twitter} style={styles.socialIcon} alt="twitter" />
+              </a>
+              <a href="https://instagram.com/zamdahealth" target="_blank" rel="noopener noreferrer" className="hover-lift">
+                <img src={instagram} style={styles.socialIcon} alt="instagram" />
+              </a>
+              <a href="https://tiktok.com/@Zamdahealth5" target="_blank" rel="noopener noreferrer" className="hover-lift">
+                <img src={tiktok} style={styles.socialIcon} alt="tiktok" />
+              </a>
+              <a href="https://linkedin.com/company/zamdahealth" target="_blank" rel="noopener noreferrer" className="hover-lift">
+                <img src={linkedin} style={styles.socialIcon} alt="linkedin" />
+              </a>
+              <a href="https://youtube.com/@zamdahealth" target="_blank" rel="noopener noreferrer" className="hover-lift">
+                <img src={youtube} style={styles.socialIcon} alt="youtube" />
+              </a>
+              <a href="https://facebook.com/Zamdahealth" target="_blank" rel="noopener noreferrer" className="hover-lift">
+                <img src={facebook} style={styles.socialIcon} alt="facebook" />
+              </a>
             </div>
           </div>
 

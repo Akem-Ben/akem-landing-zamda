@@ -157,12 +157,14 @@ const styles: any = {
   },
 
   badge: {
-    fontSize: "12px",
-    padding: "6px 14px",
-    borderRadius: "15px",
+    width: "131px",
+    height: "36px",
+    fontSize: "14px",
+    padding: "6px 16px",
+    borderRadius: "100px",
     background: "#ECFFFE",
     color: "#201E82",
-    fontWeight: 600,
+    fontWeight: 400,
     display: "inline-block",
   },
 
@@ -244,5 +246,6 @@ const styles: any = {
     borderRadius: "8px",
     border: "none",
     fontSize: "12px",
+    transition: "all 0.3s ease",
   },
 };

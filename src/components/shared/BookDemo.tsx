@@ -20,7 +20,7 @@ const BookDemoSection: React.FC = () => {
   }, []);
 
   return (
-    <section style={styles.section}>
+    <section id="book-demo" style={styles.section}>
       <div
         style={{
           ...styles.wrapper,
@@ -296,6 +296,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     cursor: "pointer",
     fontSize: "14px",
     fontWeight: 500,
+    transition: "all 0.3s ease",
   },
 
   helper: {

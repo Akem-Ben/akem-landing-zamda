@@ -16,12 +16,10 @@ const ZamHero: React.FC = () => {
       <div
         style={{
           ...styles.container,
-          padding: isMobile ? "40px 20px 0" : "70px 20px 0",
-
+          padding: isMobile ? "90px 20px 40px" : "90px 20px 0",
           borderTopLeftRadius: 0,
           borderTopRightRadius: 0,
-          borderBottomLeftRadius: isMobile ? "30px" : "50px",
-          borderBottomRightRadius: isMobile ? "30px" : "50px",
+          borderRadius: isMobile ? "0 0 55px 55px" : "0 0 72px 72px",
         }}
       >
         {/* TEXT */}
@@ -54,10 +52,15 @@ const ZamHero: React.FC = () => {
 
         {/* IMAGE */}
         <div style={styles.imageWrapper}>
-          <img src={heroImage} style={styles.image} />
+          <img 
+            src={heroImage} 
+            style={{
+              ...styles.image,
+              marginBottom: isMobile ? "0" : "-5px",
+              borderRadius: isMobile ? "20px" : "20px 20px 0 0",
+            }} 
+          />
         </div>
-
-
       </div>
     </section>
   );
@@ -72,15 +75,20 @@ const styles: any = {
     background: "linear-gradient(180deg, #E9E9F7 0%, #ffffff 100%)",
     display: "flex",
     justifyContent: "center",
+    width: "100%",
+    height: "100%",
   },
 
   container: {
     maxWidth: "100%",
     width: "100%",
     textAlign: "center",
-    background: "linear-gradient(360deg, #D0D1FE 0%, #F3F2FE 100%)",
+    background: "linear-gradient(180deg, #F3F2FE 0%, #D0D1FE 100%)",
     overflow: "hidden",
     position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
 
   title: {
@@ -98,26 +106,29 @@ const styles: any = {
   },
 
   button: {
-    padding: "14px 35px",
+    padding: "14px 60px",
     background: "#201E82",
     color: "#fff",
     borderRadius: "8px",
     border: "none",
     cursor: "pointer",
-    fontSize: "12px",
-    fontWeight: 400,
+    fontSize: "14px",
+    fontWeight: 600,
+    transition: "all 0.3s ease",
   },
 
   imageWrapper: {
-    marginTop: "50px",
+    marginTop: "auto",
     display: "flex",
     justifyContent: "center",
+    alignItems: "flex-end",
   },
 
   image: {
-    width: "90%",
+    width: "100%",
     maxWidth: "750px",
-    borderRadius: "20px",
+    borderRadius: "20px 20px 0 0",
+    display: "block",
   },
 
 
