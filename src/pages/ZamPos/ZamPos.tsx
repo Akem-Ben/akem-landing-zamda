@@ -33,23 +33,23 @@ function ZamPos() {
   );
 }
 
-const styles: { [key: string]: React.CSSProperties } = {
-  whatsapp: {
-    position: "fixed",
-    width: "55px",
-    right: "16px",
-    bottom: "80px",
-    zIndex: 1000,
-    cursor: "pointer",
-  },
-  ai: {
-    position: "fixed",
-    width: "55px",
-    right: "16px",
-    bottom: "16px",
-    zIndex: 1000,
-    cursor: "pointer",
-  },
-};
+// const styles: { [key: string]: React.CSSProperties } = {
+//   whatsapp: {
+//     position: "fixed",
+//     width: "55px",
+//     right: "16px",
+//     bottom: "80px",
+//     zIndex: 1000,
+//     cursor: "pointer",
+//   },
+//   ai: {
+//     position: "fixed",
+//     width: "55px",
+//     right: "16px",
+//     bottom: "16px",
+//     zIndex: 1000,
+//     cursor: "pointer",
+//   },
+// };
 
 export default ZamPos;
