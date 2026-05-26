@@ -8,15 +8,28 @@ import profit from "../../assets/profit.png";
 
 const Powered: React.FC = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isTablet, setIsTablet] = useState(
+    window.innerWidth >= 768 && window.innerWidth <= 1024,
+  );
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+
+      setIsTablet(
+        window.innerWidth >= 768 && window.innerWidth <= 1024,
+      );
+    };
+
     handleResize();
+
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+
+    return () =>
+      window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Mobile order: 
+  // Mobile order
   const mobileFeatures = [
     features[1], // Zam AI Chat Assistant
     features[0], // Drug Interaction Alerts
@@ -26,28 +39,48 @@ const Powered: React.FC = () => {
   ];
 
   const displayFeatures = isMobile ? mobileFeatures : features;
+
   return (
     <section style={styles.container}>
       <p style={styles.top}>Powered by Zam AI</p>
 
-      <h2 style={{ ...styles.heading, fontSize: isMobile ? "24px" : "32px", fontWeight: isMobile ? 400 : 400 }}>Zam AI Powered Features</h2>
+      <h2
+        style={{
+          ...styles.heading,
+          fontSize: isMobile ? "24px" : "32px",
+          fontWeight: 400,
+        }}
+      >
+        Zam AI Powered Features
+      </h2>
 
       <p style={styles.sub}>
-        Smarter decisions, safer dispensing, and better business outcomes with ZamAI.
+        Smarter decisions, safer dispensing, and better business outcomes with
+        ZamAI.
       </p>
 
-      <div style={{ ...styles.grid, display: isMobile ? "flex" : "grid", flexDirection: isMobile ? "column" : undefined }}>
+      <div
+        style={{
+          ...styles.grid,
+          display: isMobile ? "flex" : "grid",
+          flexDirection: isMobile ? "column" : undefined,
+          gridTemplateColumns: isTablet
+            ? "repeat(2, 1fr)"
+            : "repeat(6, 1fr)",
+        }}
+      >
         {displayFeatures.map((item, i) => {
           let position: React.CSSProperties = {};
 
-          
-          if (i === 0) position.gridColumn = "1 / span 2";
-          if (i === 1) position.gridColumn = "3 / span 2";
-          if (i === 2) position.gridColumn = "5 / span 2";
+          // DESKTOP ONLY
+          if (!isMobile && !isTablet) {
+            if (i === 0) position.gridColumn = "1 / span 2";
+            if (i === 1) position.gridColumn = "3 / span 2";
+            if (i === 2) position.gridColumn = "5 / span 2";
 
-    
-          if (i === 3) position.gridColumn = "2 / span 2";
-          if (i === 4) position.gridColumn = "4 / span 2";
+            if (i === 3) position.gridColumn = "2 / span 2";
+            if (i === 4) position.gridColumn = "4 / span 2";
+          }
 
           return (
             <div
@@ -60,6 +93,7 @@ const Powered: React.FC = () => {
             >
               <div>
                 <h3 style={styles.title}>{item.title}</h3>
+
                 <p style={styles.text}>{item.text}</p>
               </div>
 
@@ -68,14 +102,6 @@ const Powered: React.FC = () => {
           );
         })}
       </div>
-
-      <style>{`
-@media (max-width: 1024px) {
-  div[style*="grid-template-columns"] {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-`}</style>
     </section>
   );
 };
@@ -153,7 +179,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: "14px",
   },
 
-  // GRID FOR PERFECT ALIGNMENT
+  // GRID
   grid: {
     display: "grid",
     gridTemplateColumns: "repeat(6, 1fr)",
@@ -162,7 +188,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     margin: "0 auto",
   },
 
-  // PERFECT SQUARE CARDS
+  // CARDS
   card: {
     padding: "24px",
     borderRadius: "18px",

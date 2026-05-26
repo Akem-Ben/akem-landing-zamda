@@ -58,10 +58,10 @@ const WhyChooseUs: React.FC = () => {
               {text}
             </p>
 
-            <button style={styles.btn}>
+            {/* <button style={styles.btn}>
               Learn more
               <img src={arrowIcon} style={styles.arrowIcon} />
-            </button>
+            </button> */}
           </div>
         </div>
       );
